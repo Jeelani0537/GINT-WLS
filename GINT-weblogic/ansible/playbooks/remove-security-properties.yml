@@ -1,0 +1,22 @@
+- hosts: all
+  become: yes
+  become_user: oracle
+  gather_facts: no
+
+  tasks:
+  - name: Remove server's boot.properties
+    file: 
+      path: "/opt/oracle/domains{{ fmw_version }}/{{ item[0] }}/servers/{{ item[1] }}/security/boot.properties"
+      state: absent
+    with_nested:
+    - "{{ domains.split(',') }}"
+    - "{{ servers.split(',') }}"
+
+  - name: Copy encrypted boot.properties
+    copy:
+      src: "/opt/oracle/domains{{ fmw_version }}/{{ item[0] }}/boot.properties"
+      dest: "/opt/oracle/domains{{ fmw_version }}/{{ item[0] }}/servers/{{ item[1] }}/security/"
+      remote_src: true
+    with_nested:
+    - "{{ domains.split(',') }}"
+    - "{{ servers.split(',') }}"

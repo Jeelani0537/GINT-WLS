@@ -1,0 +1,6 @@
+- name: Prepare managed server name for sapp
+  shell: "sh /opt/oracle/scripts/prepare-ms-name.sh sapp"
+  register: ms_name
+
+- name: "Shutdown sapp managed servers"
+

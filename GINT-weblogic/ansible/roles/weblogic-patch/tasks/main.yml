@@ -1,0 +1,112 @@
+- name: Pick date
+  shell: "date +'%m%d%Y'"
+  register: dt_suffix
+  run_once: true
+
+- debug: 
+    var: dt_suffix.stdout
+
+- name: Delete older backups
+  shell: "ls -d /opt/oracle/* | egrep -i 'domains|FMW' | grep -v '{{ fmw_version }}$' | grep -v '{{ dt_suffix.stdout }}' | xargs rm -rf"
+  ignore_errors: yes
+
+- include: backup.yml folder="{{ item }}" dt_formatted="{{ dt_suffix.stdout }}"
+  with_items:
+  - "FMW"
+  - "domains"
+  when: (env == "PPE") or (env =="PROD")
+
+#Applicable for 11G
+#- include: bsu-patches.yml
+#  when: (bsu_remove_patches is defined and bsu_remove_patches != "") or (bsu_apply_patches is defined and bsu_apply_patches != "")
+
+- name: set fact opatch_home for 12C
+  set_fact: 
+    opatch_home: "/opt/oracle/FMW{{ fmw_version }}/OPatch"
+  when: opatch_home is undefined and fmw_version is version_compare('12.2','==')
+  
+- name: set fact opatch_home for 11G
+  set_fact:
+    opatch_home: "/opt/oracle/FMW{{ fmw_version }}/oracle_common/OPatch"
+  when: opatch_home is undefined and fmw_version is version_compare('12.2','!=')
+  
+- debug:
+    msg: "opatch_home: {{ opatch_home }}"
+
+- name: Include patch vars
+  include_vars:
+    file: "../../../patches/vars/{{ patch_file }}.yml"
+    name: patch_vars
+
+- include: opatch-debug.yml msg="before"
+  when: fmw_version is version_compare('12.2','==')
+
+- name: Remove patches
+  shell: "{{ opatch_home }}/opatch rollback -id {{ item }} -silent"
+  with_items: "{{ patch_vars['remove_ids']}}"
+  when: patch_vars['remove_ids'] is defined and patch_vars['remove_ids'] != ""
+  ignore_errors: true
+
+- file: 
+    state: absent
+    path: /opt/oracle/patches
+  ignore_errors: true
+
+- name: Create directory to place patches
+  file:
+    state: directory
+    path: /opt/oracle/patches
+
+- name: Copy scripts
+  copy:
+    src: "{{ item }}"
+    dest: /opt/oracle/patches/
+  with_items:
+  - apply-patches.sh
+  - bsu-apply-patches.sh
+  - 11g-apply-patches.sh
+
+- name: List available patches
+  shell: "ls /opt/repo/patches/{{ patch_file }}/"
+  register: files
+  delegate_to: ptseelm-lx4253.ikeadt.com
+  run_once: true
+  become: no
+
+- name: Fetch patches to local server
+  fetch:
+    src: "/opt/repo/patches/{{ patch_file }}/{{ item }}"
+    dest: /tmp/
+    flat: yes
+  with_items:
+  - "{{ files.stdout_lines }}"
+  delegate_to: ptseelm-lx4253.ikeadt.com  
+  run_once: true
+
+- name: Copy patches to servers
+  copy:
+    src: "/tmp/{{ item }}"
+    dest: "/opt/oracle/patches/"
+  with_items:
+  - "{{ files.stdout_lines }}"
+
+- include: bsu-patches.yml
+  when: (fmw_version is version_compare('12.2','!=')) and (patch_vars['bsu_ids'] != "")
+
+- include: opatch-apply.yml fmw_ver="{{ fmw_version }}" patch_id="{{ item }}"
+  with_items:
+  - "{{ patch_vars['opatch_ids'] }}"
+  when: patch_vars['opatch_ids'] is defined and patch_vars['opatch_ids'] != ""
+
+- include: opatch-apply.yml fmw_ver="{{ fmw_version }}" patch_id="{{ item }}"
+  with_items:
+  - "{{ patch_vars['wls_ids'] }}"
+  when: patch_vars['wls_ids'] is defined and patch_vars['wls_ids'] != ""
+
+- include: opatch-apply.yml fmw_ver="{{ fmw_version }}" patch_id="{{ item }}"
+  with_items:
+  - "{{ patch_vars[stack + '_ids'] }}"
+  when: patch_vars[stack + '_ids'] is defined and patch_vars[stack + '_ids'] != ""
+  
+- include: opatch-debug.yml msg="after"
+  when: fmw_version is version_compare('12.2','==')

@@ -1,0 +1,821 @@
+##########################################################################################
+#######################################V2 inventory start#################################
+##########################################################################################
+[DELIS-SOA-PPE]
+ppseelm-lx4850.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx4851.ikeadt.com  servers=soa_server2
+ppseelm-lx4852.ikeadt.com  servers=soa_server3
+ppseelm-lx4853.ikeadt.com  servers=soa_server4
+
+[DELIS-SOA-PPE:vars]	
+domains=PPOWD1417
+fmw_version=11.1.1.7
+
+[ODI-PPE-i1-2]
+ppseelm-lx4460.ikeadt.com  servers=AdminServer,odi_server1
+ppseelm-lx4461.ikeadt.com  servers=odi_server2
+ppseelm-lx4462.ikeadt.com  servers=odi_server3
+ppseelm-lx4463.ikeadt.com  servers=odi_server4
+ppseelm-lx41063.ikeadt.com   servers=odi_server5
+ppseelm-lx41064.ikeadt.com   servers=odi_server6 
+ppseelm-lx41065.ikeadt.com  servers=odi_server7
+ppseelm-lx41066.ikeadt.com  servers=odi_server8
+
+[ODI-PPE-i1-2:vars]
+domains=PPOWD0657
+
+[ODI-PPE-i1-3]	
+ppseelm-lx4464.ikeadt.com  servers=AdminServer,odi_server1
+ppseelm-lx4465.ikeadt.com  servers=odi_server2
+ppseelm-lx4466.ikeadt.com  servers=odi_server3
+ppseelm-lx4467.ikeadt.com  servers=odi_server4
+
+[ODI-PPE-i1-3:vars]
+domains=PPOWD0667
+
+[ODI-PPE-i1-4]
+ppseelm-lx4775.ikeadt.com  servers=AdminServer,odi_server1
+ppseelm-lx4776.ikeadt.com  servers=odi_server2
+ppseelm-lx4777.ikeadt.com  servers=odi_server3
+ppseelm-lx4778.ikeadt.com  servers=odi_server4
+
+[ODI-PPE-i1-4:vars]
+domains=PPOWD1237 
+
+[ODI-PPE-i1-5]
+ppseelm-lx4987.ikeadt.com  servers=AdminServer,odi_server1
+ppseelm-lx4988.ikeadt.com  servers=odi_server2
+ppseelm-lx4989.ikeadt.com  servers=odi_server3
+ppseelm-lx4990.ikeadt.com  servers=odi_server4
+
+[ODI-PPE-i1-5:vars]
+domains=PPOWD1867
+
+[ODI-PPE-i2-2]
+ppseelm-lx41959.ikeadt.com  servers=AdminServer,ODI_server1
+ppseelm-lx41960.ikeadt.com  servers=ODI_server2
+ppseelm-lx41961.ikeadt.com  servers=ODI_server3
+ppseelm-lx41962.ikeadt.com  servers=ODI_server4
+
+[ODI-PPE-i1-7]
+ppseelm-lx41099.ikeadt.com  servers=AdminServer,odi_server1
+ppseelm-lx41100.ikeadt.com  servers=odi_server2
+ppseelm-lx41101.ikeadt.com  servers=odi_server3
+ppseelm-lx41102.ikeadt.com  servers=odi_server4
+
+[ODI-PPE-i1-7:vars]
+domains=PPOWD2177
+
+[ODI-PPE-i1-8]
+ppcnchn-lx4038.ikeadt.com  servers=AdminServer,odi_server1
+ppcnchn-lx4039.ikeadt.com  servers=odi_server2
+ppcnchn-lx4040.ikeadt.com  servers=odi_server3
+ppcnchn-lx4041.ikeadt.com  servers=odi_server4
+ppcnchn-lx4042.ikeadt.com  servers=odi_server5
+ppcnchn-lx4043.ikeadt.com  servers=odi_server6
+ppcnchn-lx4044.ikeadt.com  servers=odi_server7
+ppcnchn-lx4045.ikeadt.com  servers=odi_server8
+
+[ODI-PPE-i1-8:vars]
+domains=PPOWD2949 
+
+[ODI-PPE-i2-1]	
+ppseelm-lx41202.ikeadt.com  servers=AdminServer,odi_server1
+ppseelm-lx41203.ikeadt.com  servers=odi_server2
+ppseelm-lx41204.ikeadt.com  servers=odi_server3
+ppseelm-lx41205.ikeadt.com  servers=odi_server4
+
+[ODI-PPE-i2-1:vars]
+domains=PPOWD2507
+
+[OSB-PPE-i1-1]	
+ppseelm-lx4470.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx4471.ikeadt.com  servers=osb_server2
+ppseelm-lx4472.ikeadt.com  servers=osb_server3
+ppseelm-lx4473.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-1:vars]
+domains=PPOWD0707
+
+[OSB-PPE-i1-2]
+ppseelm-lx4474.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx4475.ikeadt.com  servers=osb_server2
+ppseelm-lx4476.ikeadt.com  servers=osb_server3
+ppseelm-lx4477.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-2:vars]
+domains=PPOWD0717
+
+[OSB-PPE-i1-3]
+ppseelm-lx4768.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx4769.ikeadt.com  servers=osb_server2
+ppseelm-lx4771.ikeadt.com  servers=osb_server3
+ppseelm-lx4772.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-3:vars]
+domains=PPOWD1227
+
+[OSB-PPE-i1-4]
+ppseelm-lx41012.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx41013.ikeadt.com  servers=osb_server2
+ppseelm-lx41014.ikeadt.com  servers=osb_server3  
+ppseelm-lx41015.ikeadt.com  servers=osb_server4 
+
+[OSB-PPE-i1-4:vars]
+domains=PPOWD1907
+
+[OSB-PPE-i1-5]
+ppseelm-lx41089.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx41090.ikeadt.com  servers=osb_server2
+ppseelm-lx41091.ikeadt.com  servers=osb_server3
+ppseelm-lx41092.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-5:vars]
+domains=PPOWD2157
+
+[OSB-PPE-i1-6]
+ppcnchn-lx4047.ikeadt.com  servers=AdminServer,osb_server1
+ppcnchn-lx4048.ikeadt.com  servers=osb_server2
+ppcnchn-lx4049.ikeadt.com  servers=osb_server3
+ppcnchn-lx4050.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-6:vars]
+domains=PPOWD2989
+
+[OSB-PPE-i1-7]
+ppseelm-lx41859.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx41860.ikeadt.com  servers=osb_server2
+ppseelm-lx41861.ikeadt.com  servers=osb_server3
+ppseelm-lx41862.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-7:vars]
+domains=PPOWD4297
+
+[OSB-PPE-i2-1]
+ppseelm-lx4896.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx4897.ikeadt.com  servers=osb_server2
+ppseelm-lx4898.ikeadt.com  servers=osb_server3
+ppseelm-lx4899.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i2-1:vars]
+domains=PPOWD1627
+
+[SOA-PPE-i1-2]
+ppseelm-lx4450.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx4451.ikeadt.com  servers=soa_server2
+ppseelm-lx4452.ikeadt.com  servers=soa_server3
+ppseelm-lx4453.ikeadt.com  servers=soa_server4
+ppseelm-lx4939.ikeadt.com  servers=soa_server5
+ppseelm-lx4940.ikeadt.com  servers=soa_server6
+ppseelm-lx4941.ikeadt.com  servers=soa_server7
+ppseelm-lx4942.ikeadt.com  servers=soa_server8
+
+[SOA-PPE-i1-2:vars]
+domains=PPOWD0637
+
+[SOA-PPE-i1-3]	
+ppseelm-lx4708.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx4709.ikeadt.com  servers=soa_server2
+ppseelm-lx4711.ikeadt.com  servers=soa_server3
+ppseelm-lx4712.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-3:vars]
+domains=PPOWD1137
+
+[SOA-PPE-i1-7]	
+ppseelm-lx4826.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx4827.ikeadt.com  servers=soa_server2
+ppseelm-lx4828.ikeadt.com  servers=soa_server3
+ppseelm-lx4829.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-7:vars]
+domains=PPOWD1397
+
+[SOA-PPE-i1-8]
+ppseelm-lx41006.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41007.ikeadt.com  servers=soa_server2
+ppseelm-lx41008.ikeadt.com  servers=soa_server3
+ppseelm-lx41009.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-8:vars]
+domains=PPOWD1878
+
+[SOA-PPE-i1-9]
+ppseelm-lx41082.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41083.ikeadt.com  servers=soa_server2
+ppseelm-lx41084.ikeadt.com  servers=soa_server3
+ppseelm-lx41085.ikeadt.com  servers=soa_server4
+ppseelm-lx41340.ikeadt.com  servers=soa_server5
+ppseelm-lx41341.ikeadt.com  servers=soa_server6
+ppseelm-lx41342.ikeadt.com  servers=soa_server7
+ppseelm-lx41343.ikeadt.com  servers=soa_server8
+
+[SOA-PPE-i1-9:vars]
+domains=PPOWD2118
+
+[SOA-PPE-i2-1]
+ppseelm-lx4923.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx4924.ikeadt.com  servers=soa_server2
+ppseelm-lx4921.ikeadt.com  servers=soa_server3
+ppseelm-lx4922.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i2-1:vars]
+domains=PPOWD1588
+
+[GINT-Weblogic-PPE-V2:children]
+GINT-Weblogic-PPE-V2-ODI	
+GINT-Weblogic-PPE-V2-OSB	      
+GINT-Weblogic-PPE-V2-SOA
+
+[GINT-Weblogic-PPE-V2-ODI:children]
+ODI-PPE-i1-2	
+ODI-PPE-i1-3	
+ODI-PPE-i1-4	
+ODI-PPE-i1-5	
+ODI-PPE-i1-7	
+ODI-PPE-i1-8	
+ODI-PPE-i2-1
+
+[GINT-Weblogic-PPE-V2-ODI:vars]
+stack=odi
+fmw_version=11.1.1.6
+
+[GINT-Weblogic-PPE-V2-OSB:children]
+OSB-PPE-i1-1	
+OSB-PPE-i1-2	
+OSB-PPE-i1-3	
+OSB-PPE-i1-4	
+OSB-PPE-i1-5	
+OSB-PPE-i1-6	
+OSB-PPE-i2-1
+
+[GINT-Weblogic-PPE-V2-OSB:vars]
+stack=osbgtw
+fmw_version=11.1.1.7
+
+[GINT-Weblogic-PPE-V2-SOA:children]
+DELIS-SOA-PPE
+SOA-PPE-i1-2	
+SOA-PPE-i1-3	
+SOA-PPE-i1-7	
+SOA-PPE-i1-8	
+SOA-PPE-i1-9	
+SOA-PPE-i2-1
+
+[GINT-Weblogic-PPE-V2-SOA:vars]
+stack=soa
+fmw_version=11.1.1.7
+########################################################################################
+#######################################V2 inventory end#################################
+########################################################################################
+###----------------------------------------------------------------------------------###
+########################################################################################
+#####################################V3 inventory start#################################
+########################################################################################
+[BAM-PPE]
+ppseelm-lx4761.ikeadt.com  servers=AdminServer,bam_server1
+ppseelm-lx4762.ikeadt.com  servers=bam_server2
+ppseelm-lx4763.ikeadt.com  servers=bam_server3
+ppseelm-lx4764.ikeadt.com  servers=bam_server4
+
+[BAM-PPE:vars]
+domains=PPOWD1207
+
+[GTW-PPE-i1-1]
+ppseelm-lx41847.ikeadt.com  servers=AdminServer,gtw_server1
+ppseelm-lx41852.ikeadt.com  servers=gtw_server2
+ppseelm-lx41853.ikeadt.com  servers=gtw_server3
+ppseelm-lx41854.ikeadt.com  servers=gtw_server4
+
+[GTW-PPE-i1-1:vars]
+domains=PPOWD4277
+
+[GTW-PPE-i1-2]
+ppseelm-lx41879.ikeadt.com  servers=AdminServer,gtw_server1
+ppseelm-lx41880.ikeadt.com  servers=gtw_server2
+ppseelm-lx41881.ikeadt.com  servers=gtw_server3
+ppseelm-lx41882.ikeadt.com  servers=gtw_server4
+
+[GTW-PPE-i1-2:vars]
+domains=PPOWD4327
+
+[GTW-PPE-i1-3]
+ppseelm-lx41883.ikeadt.com  servers=AdminServer,gtw_server1
+ppseelm-lx41884.ikeadt.com  servers=gtw_server2
+ppseelm-lx41885.ikeadt.com  servers=gtw_server3
+ppseelm-lx41887.ikeadt.com  servers=gtw_server4
+
+[GTW-PPE-i1-3:vars]
+domains=PPOWD4337
+
+[GTW-PPE-i1-4]
+ppcnchn-lx4106.ikeadt.com  servers=AdminServer,gtw_server1
+ppcnchn-lx4107.ikeadt.com  servers=gtw_server2
+
+[GTW-PPE-i1-4:vars]
+domains=PPOWD4689
+
+[GTW-PPE-i1-5]
+ppcnchn-lx4111.ikeadt.com  servers=AdminServer,gtw_server1
+ppcnchn-lx4112.ikeadt.com  servers=gtw_server2
+
+[GTW-PPE-i1-5:vars]
+domains=PPOWD4699
+
+[GTW-PPE-i1-6]
+ppseelm-lx41985.ikeadt.com  servers=AdminServer,gtw_server1
+ppseelm-lx41986.ikeadt.com  servers=gtw_server2
+ppseelm-lx41987.ikeadt.com  servers=gtw_server3
+ppseelm-lx41988.ikeadt.com  servers=gtw_server4
+
+[GTW-PPE-i1-6:vars]
+domains=PPOWD4608
+
+[GTW-PPE-i1-7]
+ppseelm-lx41989.ikeadt.com  servers=AdminServer,gtw_server1
+ppseelm-lx41990.ikeadt.com  servers=gtw_server2
+ppseelm-lx41991.ikeadt.com  servers=gtw_server3
+ppseelm-lx41992.ikeadt.com  servers=gtw_server4
+
+[GTW-PPE-i1-7:vars]
+domains=PPOWD4609
+
+[GTW-PPE-i2-6]
+ppseelm-lx41916.ikeadt.com  servers=AdminServer,gtw_server1
+ppseelm-lx41917.ikeadt.com  servers=gtw_server2
+ppseelm-lx41918.ikeadt.com  servers=gtw_server3
+ppseelm-lx41919.ikeadt.com  servers=gtw_server4
+
+[GTW-PPE-i2-6:vars]
+domains=PPOWD4437
+
+[GTW-PPE-i2-7]
+ppseelm-lx41920.ikeadt.com  servers=AdminServer,gtw_server1
+ppseelm-lx41921.ikeadt.com  servers=gtw_server2
+ppseelm-lx41922.ikeadt.com  servers=gtw_server3
+ppseelm-lx41923.ikeadt.com  servers=gtw_server4
+
+[GTW-PPE-i2-7:vars]
+domains=PPOWD4447
+
+[ODI-PPE-i1-9]
+ppseelm-lx41838.ikeadt.com  servers=AdminServer,ODI_server1
+ppseelm-lx41839.ikeadt.com  servers=ODI_server2
+ppseelm-lx41840.ikeadt.com  servers=ODI_server3
+ppseelm-lx41841.ikeadt.com  servers=ODI_server4
+
+[ODI-PPE-i1-9:vars]
+domains=PPOWD4257
+
+[ODI-PPE-i1-10]
+ppseelm-lx41899.ikeadt.com  servers=AdminServer,ODI_server1
+ppseelm-lx41900.ikeadt.com  servers=ODI_server2
+ppseelm-lx41903.ikeadt.com  servers=ODI_server3
+ppseelm-lx41904.ikeadt.com  servers=ODI_server4
+  
+[ODI-PPE-i1-10:vars]
+domains=PPOWD4407
+
+[ODI-PPE-i1-11]	
+ppseelm-lx41905.ikeadt.com  servers=AdminServer,ODI_server1
+ppseelm-lx41906.ikeadt.com  servers=ODI_server2
+ppseelm-lx41907.ikeadt.com  servers=ODI_server3
+ppseelm-lx41908.ikeadt.com  servers=ODI_server4
+
+[ODI-PPE-i1-11:vars]
+domains=PPOWD4417
+
+[ODI-PPE-i1-12]
+ppcnchn-lx4115.ikeadt.com  servers=AdminServer,ODI_server1
+ppcnchn-lx4116.ikeadt.com  servers=ODI_server2
+
+[ODI-PPE-i1-12:vars]
+domains=PPOWD4719
+
+[ODI-PPE-i1-13]
+ppcnchn-lx4117.ikeadt.com  servers=AdminServer,ODI_server1
+ppcnchn-lx4118.ikeadt.com  servers=ODI_server2
+
+[ODI-PPE-i1-13:vars]
+domains=PPOWD4729
+
+[ODI-PPE-i1-14]
+ppseelm-lx41945.ikeadt.com  servers=AdminServer,ODI_server1
+ppseelm-lx41946.ikeadt.com  servers=ODI_server2
+ppseelm-lx41947.ikeadt.com  servers=ODI_server3
+ppseelm-lx41948.ikeadt.com  servers=ODI_server4
+
+[ODI-PPE-i1-14:vars]
+domains=PPOWD4507
+
+[ODI-PPE-i1-15]
+ppseelm-lx41954.ikeadt.com  servers=AdminServer,ODI_server1
+ppseelm-lx41955.ikeadt.com  servers=ODI_server2
+ppseelm-lx41956.ikeadt.com  servers=ODI_server3
+ppseelm-lx41957.ikeadt.com  servers=ODI_server4
+
+[ODI-PPE-i1-15:vars]
+domains=PPOWD4527
+
+[ODI-PPE-i2-2:vars]
+domains=PPOWD4537
+
+[ODI-PPE-i2-3]
+ppseelm-lx41963.ikeadt.com  servers=AdminServer,ODI_server1
+ppseelm-lx41964.ikeadt.com  servers=ODI_server2
+ppseelm-lx41965.ikeadt.com  servers=ODI_server3
+ppseelm-lx41966.ikeadt.com  servers=ODI_server4
+
+[ODI-PPE-i2-3:vars]
+domains=PPOWD4547
+
+[ODI-PPE-i1-16]
+ppseelm-lx42244.ikeadt.com  servers=AdminServer,ODI_server1
+ppseelm-lx42245.ikeadt.com  servers=ODI_server2
+ppseelm-lx42246.ikeadt.com  servers=ODI_server3
+ppseelm-lx42247.ikeadt.com  servers=ODI_server4
+
+[ODI-PPE-i1-16:vars]
+domains=PPOWD6003
+
+[OSB-PPE-i1-8]
+ppseelm-lx41870.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx41871.ikeadt.com  servers=osb_server2
+ppseelm-lx41872.ikeadt.com  servers=osb_server3
+ppseelm-lx41877.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-8:vars]
+domains=PPOWD4357
+
+[OSB-PPE-i1-9]
+ppseelm-lx41891.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx41892.ikeadt.com  servers=osb_server2
+ppseelm-lx41893.ikeadt.com  servers=osb_server3
+ppseelm-lx41894.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-9:vars]
+domains=PPOWD4367
+
+[OSB-PPE-i1-10]
+ppcnchn-lx4119.ikeadt.com  servers=AdminServer,osb_server1
+ppcnchn-lx4120.ikeadt.com  servers=osb_server2
+
+[OSB-PPE-i1-10:vars]
+domains=PPOWD4749
+
+[OSB-PPE-i1-11]
+ppcnchn-lx4122.ikeadt.com  servers=AdminServer,osb_server1
+ppcnchn-lx4124.ikeadt.com  servers=osb_server2
+
+[OSB-PPE-i1-11:vars]
+domains=PPOWD4759
+
+[OSB-PPE-i1-12]
+ppseelm-lx41993.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx41994.ikeadt.com  servers=osb_server2
+ppseelm-lx41995.ikeadt.com  servers=osb_server3
+ppseelm-lx41996.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-12:vars]
+domains=PPOWD4617
+
+[OSB-PPE-i1-13]	
+ppseelm-lx41997.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx41998.ikeadt.com  servers=osb_server2
+ppseelm-lx41999.ikeadt.com  servers=osb_server3
+ppseelm-lx42000.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-13:vars]
+domains=PPOWD4627
+
+#Not in use
+#[OSB-PPE-i1-14]
+#ppseelm-lx41863.ikeadt.com  servers=AdminServer,osb_server1
+#ppseelm-lx41864.ikeadt.com  servers=osb_server2
+#ppseelm-lx41865.ikeadt.com  servers=osb_server3
+#ppseelm-lx41866.ikeadt.com  servers=osb_server4
+
+#[OSB-PPE-i1-14:vars]
+#domains=PPOWD4307
+
+[OSB-PPE-i1-15]
+ppseelm-lx42394.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx42395.ikeadt.com  servers=osb_server2
+ppseelm-lx42396.ikeadt.com  servers=osb_server3
+ppseelm-lx42397.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-15:vars]
+domains=PPOWD6012
+
+[OSB-PPE-i1-16]
+ppseelm-lx42398.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx42399.ikeadt.com  servers=osb_server2
+ppseelm-lx42400.ikeadt.com  servers=osb_server3
+ppseelm-lx42401.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-16:vars]
+domains=PPOWD6013
+
+[OSB-PPE-i2-2]	
+ppseelm-lx41937.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx41938.ikeadt.com  servers=osb_server2
+ppseelm-lx41939.ikeadt.com  servers=osb_server3
+ppseelm-lx41940.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i2-2:vars]
+domains=PPOWD4487
+
+[OSB-PPE-i2-3]
+ppseelm-lx41941.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx41942.ikeadt.com  servers=osb_server2
+ppseelm-lx41943.ikeadt.com  servers=osb_server3
+ppseelm-lx41944.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i2-3:vars]
+domains=PPOWD4497
+
+[OSB-PPE-i1-14]
+ppseelm-lx42256.ikeadt.com  servers=AdminServer,osb_server1
+ppseelm-lx42257.ikeadt.com  servers=osb_server2
+ppseelm-lx42258.ikeadt.com  servers=osb_server3
+ppseelm-lx42259.ikeadt.com  servers=osb_server4
+
+[OSB-PPE-i1-14:vars]
+domains=PPOWD6006
+
+[SOA-PPE-i1-11]
+ppseelm-lx41842.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41843.ikeadt.com  servers=soa_server2
+ppseelm-lx41844.ikeadt.com  servers=soa_server3
+ppseelm-lx41845.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-11:vars]
+domains=PPOWD4267
+
+[SOA-PPE-i1-12]	
+ppseelm-lx41873.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41874.ikeadt.com  servers=soa_server2
+ppseelm-lx41875.ikeadt.com  servers=soa_server3
+ppseelm-lx41876.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-12:vars]
+domains=PPOWD4377
+
+[SOA-PPE-i1-13]	
+ppseelm-lx41886.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41888.ikeadt.com  servers=soa_server2
+ppseelm-lx41889.ikeadt.com  servers=soa_server3
+ppseelm-lx41890.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-13:vars]
+domains=PPOWD4387
+	
+[SOA-PPE-i1-14]
+ppseelm-lx41895.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41896.ikeadt.com  servers=soa_server2
+ppseelm-lx41897.ikeadt.com  servers=soa_server3
+ppseelm-lx41898.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-14:vars]
+domains=PPOWD4397 
+
+[SOA-PPE-i1-15]	
+ppseelm-lx41909.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41910.ikeadt.com  servers=soa_server2
+ppseelm-lx41911.ikeadt.com  servers=soa_server3
+ppseelm-lx41912.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-15:vars]
+domains=PPOWD4427
+
+[SOA-PPE-i1-16]
+ppcnchn-lx4108.ikeadt.com  servers=AdminServer,soa_server1
+ppcnchn-lx4109.ikeadt.com  servers=soa_server2
+
+[SOA-PPE-i1-16:vars]
+domains=PPOWD4709
+
+[SOA-PPE-i1-17]
+ppcnchn-lx4113.ikeadt.com  servers=AdminServer,soa_server1
+ppcnchn-lx4114.ikeadt.com  servers=soa_server2
+
+[SOA-PPE-i1-17:vars]
+domains=PPOWD4739
+
+[SOA-PPE-i1-18]
+ppcnchn-lx4121.ikeadt.com  servers=AdminServer,soa_server1
+ppcnchn-lx4123.ikeadt.com  servers=soa_server2
+
+[SOA-PPE-i1-18:vars]
+domains=PPOWD4769
+
+[SOA-PPE-i1-19]
+ppcnchn-lx4125.ikeadt.com  servers=AdminServer,soa_server1
+ppcnchn-lx4126.ikeadt.com  servers=soa_server2
+
+[SOA-PPE-i1-19:vars]
+domains=PPOWD4779
+
+[SOA-PPE-i1-20]
+ppseelm-lx41973.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41974.ikeadt.com  servers=soa_server2
+ppseelm-lx41975.ikeadt.com  servers=soa_server3
+ppseelm-lx41976.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-20:vars]
+domains=PPOWD4587 
+
+[SOA-PPE-i1-21]
+ppseelm-lx41977.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41978.ikeadt.com  servers=soa_server2
+ppseelm-lx41979.ikeadt.com  servers=soa_server3
+ppseelm-lx41980.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-21:vars]
+domains=PPOWD4597
+
+[SOA-PPE-i1-22]
+ppseelm-lx41981.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41982.ikeadt.com  servers=soa_server2
+ppseelm-lx41983.ikeadt.com  servers=soa_server3
+ppseelm-lx41984.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-22:vars]
+domains=PPOWD4607
+
+[SOA-PPE-i1-23]
+ppseelm-lx42002.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx42003.ikeadt.com  servers=soa_server2
+ppseelm-lx42004.ikeadt.com  servers=soa_server3
+ppseelm-lx42005.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-23:vars]
+domains=PPOWD4637 
+
+[SOA-PPE-i2-2]	
+ppseelm-lx41925.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41926.ikeadt.com  servers=soa_server2
+ppseelm-lx41927.ikeadt.com  servers=soa_server3
+ppseelm-lx41928.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i2-2:vars]
+domains=PPOWD4457
+
+[SOA-PPE-i2-3]	
+ppseelm-lx41929.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41930.ikeadt.com  servers=soa_server2
+ppseelm-lx41931.ikeadt.com  servers=soa_server3
+ppseelm-lx41932.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i2-3:vars]
+domains=PPOWD4467
+
+[SOA-PPE-i2-4]
+ppseelm-lx41933.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41934.ikeadt.com  servers=soa_server2
+ppseelm-lx41935.ikeadt.com  servers=soa_server3
+ppseelm-lx41936.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i2-4:vars]
+domains=PPOWD4477 
+
+[SOA-PPE-i2-5]	
+ppseelm-lx41949.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx41950.ikeadt.com  servers=soa_server2
+ppseelm-lx41951.ikeadt.com  servers=soa_server3
+ppseelm-lx41952.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i2-5:vars]
+domains=PPOWD4517
+
+[SOA-PPE-i1-26]
+ppseelm-lx42248.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx42249.ikeadt.com  servers=soa_server2
+ppseelm-lx42250.ikeadt.com  servers=soa_server3
+ppseelm-lx42251.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-26:vars]
+domains=PPOWD6004
+
+[SOA-PPE-i1-27]
+ppseelm-lx42252.ikeadt.com  servers=AdminServer,soa_server1
+ppseelm-lx42253.ikeadt.com  servers=soa_server2
+ppseelm-lx42254.ikeadt.com  servers=soa_server3
+ppseelm-lx42255.ikeadt.com  servers=soa_server4
+
+[SOA-PPE-i1-27:vars]
+domains=PPOWD6005
+
+#Not in use
+#[SOA-PPE-i1-25]
+#ppseelm-lx41848.ikeadt.com  servers=AdminServer,soa_server1
+#ppseelm-lx41849.ikeadt.com  servers=soa_server2
+#ppseelm-lx41850.ikeadt.com  servers=soa_server3
+#ppseelm-lx41851.ikeadt.com  servers=soa_server4
+
+#[SOA-PPE-i1-25:vars]
+#domains=
+
+[GINT-Weblogic-PPE-V3-GTW:children]
+GTW-PPE-i1-1	
+GTW-PPE-i1-2	
+GTW-PPE-i1-3	
+GTW-PPE-i1-4	
+GTW-PPE-i1-5	
+GTW-PPE-i1-6	
+GTW-PPE-i1-7	
+GTW-PPE-i2-6	
+GTW-PPE-i2-7
+
+[GINT-Weblogic-PPE-V3-GTW:vars]
+stack=osbgtw
+
+[GINT-Weblogic-PPE-V3-ODI:children]
+ODI-PPE-i1-10	
+ODI-PPE-i1-11	
+ODI-PPE-i1-12	
+ODI-PPE-i1-13	
+ODI-PPE-i1-14	
+ODI-PPE-i1-15	
+ODI-PPE-i1-9	
+ODI-PPE-i2-2	
+ODI-PPE-i2-3
+ODI-PPE-i1-16
+
+[GINT-Weblogic-PPE-V3-ODI:vars]
+stack=odi
+
+[GINT-Weblogic-PPE-V3-OSB:children]
+OSB-PPE-i1-10	
+OSB-PPE-i1-11	
+OSB-PPE-i1-12	
+OSB-PPE-i1-13	
+#OSB-PPE-i1-14	
+OSB-PPE-i1-7	
+OSB-PPE-i1-8	
+OSB-PPE-i1-9	
+OSB-PPE-i2-2	
+OSB-PPE-i2-3
+OSB-PPE-i1-14
+OSB-PPE-i1-15
+OSB-PPE-i1-16
+
+[GINT-Weblogic-PPE-V3-OSB:vars]
+stack=osbgtw
+
+[GINT-Weblogic-PPE-V3-SOA:children]
+SOA-PPE-i1-11	
+SOA-PPE-i1-12	
+SOA-PPE-i1-13	
+SOA-PPE-i1-14	
+SOA-PPE-i1-15	
+SOA-PPE-i1-16	
+SOA-PPE-i1-17	
+SOA-PPE-i1-18	
+SOA-PPE-i1-19	
+SOA-PPE-i1-20	
+SOA-PPE-i1-21	
+SOA-PPE-i1-22	
+SOA-PPE-i1-23
+#SOA-PPE-i1-25	
+SOA-PPE-i2-2	
+SOA-PPE-i2-3	
+SOA-PPE-i2-4	
+SOA-PPE-i2-5
+SOA-PPE-i1-26
+SOA-PPE-i1-27
+
+[GINT-Weblogic-PPE-V3-SOA:vars]
+stack=soa
+
+[GINT-Weblogic-PPE-V3:children]
+GINT-Weblogic-PPE-V3-GTW
+GINT-Weblogic-PPE-V3-ODI	
+GINT-Weblogic-PPE-V3-OSB	      
+GINT-Weblogic-PPE-V3-SOA
+		
+[GINT-Weblogic-PPE-V3:vars]
+fmw_version=12.2
+########################################################################################
+#####################################V3 inventory end###################################
+########################################################################################
+
+########################################################################################
+#####################################V2&V3 CHINA start##################################
+########################################################################################
+[CHINA:children]
+ODI-PPE-i1-8
+OSB-PPE-i1-6
+GTW-PPE-i1-4
+GTW-PPE-i1-5
+ODI-PPE-i1-12
+ODI-PPE-i1-13
+OSB-PPE-i1-10
+OSB-PPE-i1-11
+SOA-PPE-i1-16
+SOA-PPE-i1-17
+SOA-PPE-i1-18
+SOA-PPE-i1-19
+########################################################################################
+#####################################V2&V3 CHINA end####################################
+########################################################################################

@@ -1,0 +1,4 @@
+Ensure to take wlst.sh from SOA_HOME
+Run script in below format
+<wlst.sh full path> listNonDefaultComposites.py <admin-host> <admin-port> <console-username> <console-password> <managed-server-port>
+<wlst.sh full path> retireNonDefaultComposites.py <admin-host> <admin-port> <console-username> <console-password> <managed-server-port>

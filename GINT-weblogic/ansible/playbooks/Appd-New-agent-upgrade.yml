@@ -1,0 +1,12 @@
+- hosts: all
+  become: yes
+  become_user: oracle
+  gather_facts: no
+
+  vars_files:
+  - ../group_vars/global.yml
+  - ../group_vars/secrets.yml
+
+  roles:
+  - role: Appd-New-agent-upgrade 
+    when: env in ['PPE','PROD']

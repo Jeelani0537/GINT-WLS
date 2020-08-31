@@ -1,0 +1,49 @@
+- hosts: all
+  gather_facts: no
+  #strategy: free
+  become: yes
+  become_user: oracle
+  any_errors_fatal: true
+
+  vars_files:
+  - ../group_vars/global.yml
+
+  roles:
+  - role: config-backup
+
+  - role: run-wlst
+    patch_file: 11G-patches-jul-2019
+    when: servers is search('Admin')
+
+#- hosts: all
+#  gather_facts: no
+  #strategy: free
+#  become: yes
+#  become_user: oracle
+#  any_errors_fatal: true
+#  serial: 1
+
+#  vars_files:
+#  - ../group_vars/global.yml
+
+#  roles:
+#  - role: blackout
+#    action: start
+#    tags: blackoutstart
+
+#  - role: weblogic-restart
+#    action: stop
+#    tags: weblogicstop
+
+#  - role: vip
+#    action: start
+#    tags: vipstart
+
+#  - role: weblogic-restart
+#    action: start
+#    tags: weblogicstart
+
+#  - role: blackout
+#    action: stop
+#    tags: blackoutstop
+

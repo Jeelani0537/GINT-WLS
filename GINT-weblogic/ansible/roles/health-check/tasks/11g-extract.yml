@@ -1,0 +1,8 @@
+- name: Extract adminhost
+  shell: "cat /opt/oracle/domains{{ fmw_version }}/{{ domain_name }}/servers/AdminServer/data/nodemanager/AdminServer.url | awk -F':' '{print $2}' | awk -F'/' '{print $3'}"
+  register: adminhost
+
+- name: Extract adminport
+  shell: "cat /opt/oracle/domains{{ fmw_version }}/{{ domain_name }}/servers/AdminServer/data/nodemanager/AdminServer.url | awk -F':' '{print $3}'"
+  register: adminport
+

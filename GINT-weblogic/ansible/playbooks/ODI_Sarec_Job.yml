@@ -1,0 +1,7 @@
+---
+- hosts: all
+  gather_facts: False
+  become: yes
+  become_user: oracle
+  roles:
+  - odi_sarec_job

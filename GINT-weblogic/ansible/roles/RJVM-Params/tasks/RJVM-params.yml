@@ -1,0 +1,6 @@
+- name:  Add Parameters in the Startup Arguments
+  lineinfile:
+    path: "/opt/oracle/domains12.2/*/config/config.xml"
+    line: " -Doracle.jdbc.ReadTimeout=600000 -Dweblogic.Chunksize=65535 -Dweblogic.jndi.responseReadTimeout=120000 -Dweblogic.jndi.connectTimeout=120000 -Dweblogic.UseEnhancedIncrementAdvisor=false"
+    insertbefore: "</arguments>"
+    state: present

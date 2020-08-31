@@ -1,0 +1,22 @@
+- name: Create tempfile
+  tempfile:
+    state: file
+    path: /tmp
+    prefix: cds-report
+  register: outputFile
+  run_once: true
+
+#- name: Run df command
+#  shell: "pattern='nfs_ha_ppe_oitp_odi_d1' && if [ $(df -Ph | grep $pattern | wc -l) -eq 1 ]; then echo $pattern' is found'; else echo $pattern' is not found'; fi >> {{ outputFile.path }}"
+
+- name: Print cds entries
+  shell: "cat /opt/oracle/domains{{ fmw_version }}/{{ item }}/config/config.xml | grep -i cds | grep host | uniq >> {{ outputFile.path }}"
+  with_items:
+  - "{{ domains }}"
+
+- name: "Change permissions of {{ outputFile.path }}"
+  file: 
+    path: "{{ outputFile.path }}"
+    state: file
+    mode: 0777
+

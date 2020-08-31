@@ -1,0 +1,64 @@
+#- name: "Check if {{ patch_file }}.py exists at ../../../../wlst/miscelleneous/"
+#  stat:
+#    path: "../../../../wlst/miscelleneous/{{ patch_file }}.py"
+#  register: baselinescriptvalidation
+#  delegate_to: localhost
+#  become: false
+
+- include: 12c-extract.yml
+  when: fmw_version is version_compare('12.2','==')
+
+- include: 11g-extract.yml
+  when: fmw_version is version_compare('12.2','!=')
+
+- name: Debug AdminHost and AdminPort
+  debug:
+    msg: "{{ item1 }}"
+  with_items: 
+  - "AdminHost: {{ admhost }}"
+  - "AdminPort: {{ admport }}"
+  loop_control:
+    loop_var: item1
+  when: admhost is defined and admport is defined
+
+#- name: Define adminhost and adminport
+#  set_fact:
+#    adminport.stdout: 7001
+#    adminhost.stdout: "{{ inventory_hostname }}"
+#  when: (adminport is not defined and adminhost is undefined) or (adminport.stdout == " " and adminhost.stdout == " ")
+
+- name: Create directory to place scripts
+  file:
+    state: directory
+    path: /opt/oracle/scripts
+
+- name: "Copy {{ patch_file }}.py script"
+  copy:
+    src: "../../../../wlst/miscelleneous/{{ patch_file }}.py"
+    dest: "/opt/oracle/scripts/{{ patch_file }}.py"
+  ignore_errors: true
+
+- name: "Check if {{ patch_file }}.py exists at /opt/oracle/scripts"
+  stat:
+    path: "/opt/oracle/scripts/{{ patch_file }}.py"
+  register: baselinescriptvalidation
+
+- set_fact:
+    additional_params: "test"
+  when: additional_params is not defined
+
+- name: Define boot.properties home for 12C
+  set_fact:
+    boot_home: "/opt/oracle/domains{{ fmw_version }}/{{ domain_name }}"
+  when: fmw_version is version_compare('12.2','==')
+
+- name: Define boot.properties home for 11G
+  set_fact:
+    boot_home: "/opt/oracle/domains{{ fmw_version }}/{{ domain_name }}/servers/AdminServer/security"
+  when: fmw_version is version_compare('12.2','!=')
+
+- name: Execute script
+  shell: "source {{ boot_home }}/boot.properties && /opt/oracle/FMW{{ fmw_version }}/oracle_common/common/bin/wlst.sh /opt/oracle/scripts/{{ patch_file }}.py $password {{ domain_name }} {{ fmw_version }} {{ admhost }} {{ admport }} {{ additional_params }}"
+  when: baselinescriptvalidation.stat.exists == true and admhost is defined and admport is defined
+  register: scriptop
+  failed_when: '"Script execution failed" in scriptop.stdout'

@@ -1,0 +1,33 @@
+- shell: "cat {{ outputFile.path }}"
+  register: op
+
+- name: Collate results to localhost
+  shell: "echo {{ inventory_hostname  }}: '{{ op.stdout }}' >> {{ outputFile.path }}"
+  delegate_to: localhost
+
+- name: Remove tempfile
+  file:
+    path: "{{ outputFile.path }}"
+    state: absent
+  become: yes
+  become_user: oracle
+
+- block:
+  - name: Pick date
+    shell: "date +'%D'"
+    register: dt
+
+  - name: Copy collated results from Ansible server to one of the servers
+    copy:
+      src: "{{ outputFile.path }}"
+      dest: /tmp/
+  
+  - name: Send results over email
+    shell: "cat {{ outputFile.path }} | sort | mail -s cds-report-{{ dt.stdout }} -r {{ ansible_tower_mail_id }}@`hostname -d` {{ email_ids }}"
+
+  - name: Remove tempfile on ansible server
+    file:
+      path: "{{ outputFile.path }}"
+      state: absent
+    delegate_to: localhost
+  run_once: true

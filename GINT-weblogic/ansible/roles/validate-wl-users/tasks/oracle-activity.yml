@@ -1,0 +1,44 @@
+- name: Extract AdminPort
+  shell: |
+          awk '/AdminChannel/ {p=1}; p; /<\/network-access-point>/ {p=0}' /opt/oracle/domains{{ fmw_version }}/{{ domains }}/config/config.xml | grep 'listen-port' | sed 's/listen-port//g' | sed 's/<//g' | sed 's/>//g' | sed 's/\///g' | sed 's/ //g'
+  register: adminport
+
+- name: Extract AdminHost
+  shell: |
+          awk '/AdminChannel/ {p=1}; p; /<\/network-access-point>/ {p=0}' /opt/oracle/domains{{ fmw_version }}/{{ domains }}/config/config.xml | grep 'listen-address' | sed 's/listen-address//g' | sed 's/<//g' | sed 's/>//g' | sed 's/\///g' | sed 's/ //g'
+  register: adminhost
+
+- name: Set facts if adminport and adminhost are not found in config.xml
+  set_fact:
+    admport: '7001'
+    admhost: '{{ inventory_hostname }}'
+  when: adminport.stdout == "" and adminhost.stdout == ""
+
+- name: Set facts if adminport and adminhost are found in config.xml
+  set_fact:
+    admport: "{{ adminport.stdout }}"
+    admhost: "{{ adminhost.stdout }}"
+  when: adminport.stdout != "" and adminhost.stdout != ""
+
+- name: Debug AdminHost and AdminPort
+  debug:
+    msg: "{{ item }}"
+  with_items: 
+  - "AdminHost: {{ admhost }}"
+  - "AdminPort: {{ admport }}"
+
+- name: Copy validation script
+  copy:
+    src: "../../../../wlst/miscelleneous/validate-Users.py"
+    dest: "/opt/oracle/scripts/"
+
+- name: Run script
+  shell: "source /opt/oracle/domains{{ fmw_version }}/{{ domains }}/servers/AdminServer/security/boot.properties && /opt/oracle/FMW{{ fmw_version }}/oracle_common/common/bin/wlst.sh /opt/oracle/scripts/validate-Users.py $password {{ domains }} {{ fmw_version }} {{ admhost }} {{ admport }}"
+  register: scriptop
+  failed_when: '"Script execution failed" in scriptop.stdout'
+
+- name: Change permissions of output file
+  file:
+    path: "/tmp/user-status.txt"
+    state: file
+    mode: 0777

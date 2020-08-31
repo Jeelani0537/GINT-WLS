@@ -1,0 +1,12 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  become_user: oracle
+
+  vars_files:
+  - ../group_vars/global.yml
+
+  roles:
+  - role: run-wlst
+    patch_file: osbPolicyPermissionFix
+

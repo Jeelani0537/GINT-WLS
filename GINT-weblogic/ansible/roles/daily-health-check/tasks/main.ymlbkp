@@ -1,0 +1,79 @@
+- name: Create tempfile to store output
+  tempfile:
+    state: file
+    path: /tmp
+    prefix: backup-dump-purge-output
+  register: outputFile
+  run_once: true
+
+- set_fact: 
+    ansiblePath: "{{ outputFile.path }}"
+
+- name: List backup tmp and cache directories
+  shell: "ls -d /opt/oracle/*/*/servers/*/{{ item }}* | grep -v {{ item }}$ "
+  with_items:
+  - "tmp"
+  - "cache"
+  - "data"
+  register: backup
+  ignore_errors: true
+
+- name: List heapdump files
+  shell: "ls -F /opt/oracle/*/*/*.hprof* >> {{ ansiblePath }}"
+  register: heapdump
+  ignore_errors: true
+
+- name: Get disk usage stats
+  shell: "if [[ $(df -Ph | grep '{{ item }}$' | awk '{print $5}' | cut -d'%' -f1) -gt 75 ]]; then echo $(df -Ph | grep '{{ item }}$' | awk '{print $6 \" - \" $5}') >> {{ ansiblePath }}; fi"
+  with_items:
+  - "/opt/oracle"
+  - "/u01"
+  - "/u01/app/oracle"
+  ignore_errors: true
+
+- shell: "cat {{ ansiblePath }}"
+  register: op
+
+- debug: var=op.stdout_lines
+
+- name: Remove tempfile
+  file:
+    path: "{{ ansiblePath }}"
+    state: absent
+
+- block:
+  - name: Write output from all hosts to tempfile on Ansible server
+    shell: "echo {{ inventory_hostname }}:  {{ item }} >> {{ ansiblePath }}"
+    with_items:
+    - "{{ op.stdout_lines }}"
+
+  - name: "Print collated results"
+    shell: "cat {{ ansiblePath }} | sort"
+    run_once: true
+  delegate_to: localhost
+    
+- block:
+  - name: Pick date
+    shell: "date +'%D'"
+    register: dt
+
+  - name: Copy collated results from Ansible server to one of the servers
+    copy: 
+      src: "{{ ansiblePath }}"
+      dest: /tmp/
+
+  - name: Send results over email
+    shell: "cat {{ ansiblePath }} | sort | mail -s {{ env }}-Backup-heapdump-report-{{ dt.stdout }} -r {{ ansible_tower_mail_id }}@`hostname -d` {{ email_ids }}"
+
+  - name: Remove tempfile
+    file:
+      path: "{{ ansiblePath }}"
+      state: absent
+  run_once: true    
+
+- name: Remove tempfile from Ansible server
+  file:
+    path: "{{ ansiblePath }}"
+    state: absent
+  delegate_to: localhost
+  run_once: true

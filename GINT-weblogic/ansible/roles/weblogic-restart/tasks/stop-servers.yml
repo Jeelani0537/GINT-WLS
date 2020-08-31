@@ -1,0 +1,22 @@
+- include: graceful-shutdown.yml
+  when: (fmw_version is version_compare('12.2','==')) and (stack != "odi")
+
+- name: "stop server forcefully"
+  shell: "cd /opt/oracle/domains{{ fmw_version }}/{{ item[0] }} && ./stop_{{ item[1] }}_WithNodeManager.sh"
+  when: (fmw_version is version_compare('12.2','!=')) or (item[1] is search('Admin') or item[1] is search('ODI'))
+  with_nested:
+  - "{{ domains.split(',') }}"
+  - "{{ servers.split(',') }}"
+
+- name: Move tmp and cache folders to backup folder
+  shell: "cd /opt/oracle/domains{{ fmw_version }}/{{ item[1] }}/servers/{{ item[2] }} && mv {{ item[0] }} {{ item[0] }}_{{ dt.stdout }}"
+  with_nested:
+  - ["tmp","cache"]
+  - "{{ domains.split(',') }}"
+  - "{{ servers.split(',') }}"
+  ignore_errors: yes
+
+- name: Stop NodeManager
+  shell: "cd /opt/oracle/domains{{ fmw_version }}/{{ item }}/nodemanager && ./stopNodeManager.sh"
+  with_items:
+  - "{{ domains.split(',') }}"

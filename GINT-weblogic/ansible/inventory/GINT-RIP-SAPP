@@ -1,0 +1,330 @@
+##########################################################
+#############RIP-SAPP-INVENTORY###########################
+##########################################################
+
+[SAPP_PROD4]
+itseelm-lx41273.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41299.ikea.com  servers=sapp_server2
+
+[SAPP_PROD4:vars]
+domains=ITOWD1987
+
+[SAPP_PROD5]
+itseelm-lx41280.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41301.ikea.com  servers=sapp_server2
+
+[SAPP_PROD5:vars]
+domains=ITOWD2507
+
+[SAPP_PROD6]
+itseelm-lx41281.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41302.ikea.com  servers=sapp_server2
+
+[SAPP_PROD6:vars]
+domains=ITOWD2527
+
+[SAPP_PROD7]
+itseelm-lx41282.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41303.ikea.com  servers=sapp_server2
+
+[SAPP_PROD7:vars]
+domains=ITOWD2547
+
+[SAPP_PROD8]
+itseelm-lx41283.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41304.ikea.com  servers=sapp_server2
+
+[SAPP_PROD8:vars]
+domains=ITOWD2567
+
+[SAPP_PROD9]
+itseelm-lx41284.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41305.ikea.com  servers=sapp_server2
+
+[SAPP_PROD9:vars]
+domains=ITOWD2587
+
+[SAPP_PROD10]
+itseelm-lx41285.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41306.ikea.com  servers=sapp_server2
+
+[SAPP_PROD10:vars]
+domains=ITOWD2607
+
+[SAPP_PROD11]
+itseelm-lx41286.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41307.ikea.com  servers=sapp_server2
+
+[SAPP_PROD11:vars]
+domains=ITOWD2627
+
+[SAPP_PROD12]
+itseelm-lx41287.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41308.ikea.com  servers=sapp_server2
+
+[SAPP_PROD12:vars]
+domains=ITOWD2647
+
+[SAPP_PROD13]
+itseelm-lx41288.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41309.ikea.com  servers=sapp_server2
+
+[SAPP_PROD13:vars]
+domains=ITOWD2667
+
+[SAPP_PROD14]
+itseelm-lx41289.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41310.ikea.com  servers=sapp_server2
+
+[SAPP_PROD14:vars]
+domains=ITOWD2687
+
+[SAPP_PROD15]
+itseelm-lx41290.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41311.ikea.com  servers=sapp_server2
+
+[SAPP_PROD15:vars]
+domains=ITOWD2707
+
+[SAPP_PROD16]
+itseelm-lx41292.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41312.ikea.com  servers=sapp_server2
+
+[SAPP_PROD16:vars]
+domains=ITOWD2727
+
+[SAPP_PROD17]
+itseelm-lx41669.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41670.ikea.com  servers=sapp_server2
+
+[SAPP_PROD17:vars]
+domains=ITOWD5002
+
+[SAPP_PROD18]
+itseelm-lx41671.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41672.ikea.com  servers=sapp_server2
+
+[SAPP_PROD18:vars]
+domains=ITOWD5004
+
+[SAPP_PROD19]
+itseelm-lx41685.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41686.ikea.com  servers=sapp_server2
+
+[SAPP_PROD19:vars]
+domains=ITOWD5006
+
+[SAPP_PROD20]
+itseelm-lx41687.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41688.ikea.com  servers=sapp_server2
+
+[SAPP_PROD20:vars]
+domains=ITOWD5008
+
+[SAPP_PROD21]
+itseelm-lx41689.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41690.ikea.com  servers=sapp_server2
+
+[SAPP_PROD21:vars]
+domains=ITOWD5010
+
+[SAPP_PROD22]
+itseelm-lx41691.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41692.ikea.com  servers=sapp_server2
+
+[SAPP_PROD22:vars]
+domains=ITOWD5012
+
+[SAPP_PROD23]
+itseelm-lx41693.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41694.ikea.com  servers=sapp_server2
+
+[SAPP_PROD23:vars]
+domains=ITOWD5014
+
+[SAPP_PROD24]
+itseelm-lx41748.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41758.ikea.com  servers=sapp_server2
+
+[SAPP_PROD24:vars]
+domains=ITOWD4002
+
+[SAPP_PROD25]
+itseelm-lx41749.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41759.ikea.com  servers=sapp_server2
+
+[SAPP_PROD25:vars]
+domains=ITOWD4004
+
+[SAPP_PROD26]
+itseelm-lx41750.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41760.ikea.com  servers=sapp_server2
+
+[SAPP_PROD26:vars]
+domains=ITOWD4006
+
+[SAPP_PROD27]
+itseelm-lx41751.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41761.ikea.com  servers=sapp_server2
+
+[SAPP_PROD27:vars]
+domains=ITOWD4008
+
+[SAPP_PROD28]
+itseelm-lx41752.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41762.ikea.com  servers=sapp_server2
+
+[SAPP_PROD28:vars]
+domains=ITOWD4010
+
+[SAPP_PROD29]
+itseelm-lx41753.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41763.ikea.com  servers=sapp_server2
+
+[SAPP_PROD29:vars]
+domains=ITOWD4012
+
+[SAPP_PROD30]
+itseelm-lx41754.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41764.ikea.com  servers=sapp_server2
+
+[SAPP_PROD30:vars]
+domains=ITOWD4014
+
+[SAPP_PROD31]
+itseelm-lx41755.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41765.ikea.com  servers=sapp_server2
+
+[SAPP_PROD31:vars]
+domains=ITOWD4016
+
+[SAPP_PROD32]
+itseelm-lx41756.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41766.ikea.com  servers=sapp_server2
+
+[SAPP_PROD32:vars]
+domains=ITOWD4018
+
+[SAPP_PROD33]
+itseelm-lx41757.ikea.com  servers=AdminServer,sapp_server1
+itseelm-lx41767.ikea.com  servers=sapp_server2
+
+[SAPP_PROD33:vars]
+domains=ITOWD4020
+
+[SAPP_PROD01CH]
+itcnchn-lx4091.ikea.com  servers=AdminServer,sapp_server1
+itcnchn-lx4092.ikea.com  servers=sapp_server2
+
+[SAPP_PROD01CH:vars]
+domains=ITOWD2149
+
+[SAPP_PROD02CH]
+itcnchn-lx4093.ikea.com  servers=AdminServer,sapp_server1
+itcnchn-lx4094.ikea.com  servers=sapp_server2
+
+[SAPP_PROD02CH:vars]
+domains=ITOWD2169
+
+[SAPP_PROD03CH]
+itcnchn-lx4166.ikea.com  servers=AdminServer,sapp_server1
+itcnchn-lx4167.ikea.com  servers=sapp_server2
+
+[SAPP_PROD03CH:vars]
+domains=ITOWD5017
+
+[SAPP_PROD04CH]
+itcnchn-lx4168.ikea.com  servers=AdminServer,sapp_server1
+itcnchn-lx4169.ikea.com  servers=sapp_server2
+
+[SAPP_PROD04CH:vars]
+domains=ITOWD5019
+
+[SAPP_PROD05CH]
+itcnchn-lx4170.ikea.com  servers=AdminServer,sapp_server1
+itcnchn-lx4171.ikea.com  servers=sapp_server2
+
+[SAPP_PROD05CH:vars]
+domains=ITOWD5021
+
+[SAPP_PROD06CH]
+itcnchn-lx4172.ikea.com  servers=AdminServer,sapp_server1
+itcnchn-lx4173.ikea.com  servers=sapp_server2
+
+[SAPP_PROD06CH:vars]
+domains=ITOWD5023
+
+[SAPP_PROD07CH]
+itcnchn-lx4174.ikea.com  servers=AdminServer,sapp_server1
+itcnchn-lx4175.ikea.com  servers=sapp_server2
+
+[SAPP_PROD07CH:vars]
+domains=ITOWD5025
+
+[SAPP_PROD01AP]
+itsgsng-lx4026.ikea.com  servers=AdminServer,sapp_server1
+itsgsng-lx4027.ikea.com  servers=sapp_server2
+
+[SAPP_PROD01AP:vars]
+domains=ITOWD1245
+
+[SAPP_PROD02AP]
+itsgsng-lx4042.ikea.com  servers=AdminServer,sapp_server1
+itsgsng-lx4043.ikea.com  servers=sapp_server2
+
+[SAPP_PROD02AP:vars]
+domains=ITOWD2095
+
+[SAPP_PROD03AP]
+itsgsng-lx4044.ikea.com  servers=AdminServer,sapp_server1
+itsgsng-lx4045.ikea.com  servers=sapp_server2
+
+[SAPP_PROD03AP:vars]
+domains=ITOWD2125
+
+[GINT-RIP-SAPP:children]
+SAPP_PROD4
+SAPP_PROD5
+SAPP_PROD6
+SAPP_PROD7
+SAPP_PROD8
+SAPP_PROD9
+SAPP_PROD10
+SAPP_PROD11
+SAPP_PROD12
+SAPP_PROD13
+SAPP_PROD14
+SAPP_PROD15
+SAPP_PROD16
+SAPP_PROD17
+SAPP_PROD18
+SAPP_PROD19
+SAPP_PROD20
+SAPP_PROD21
+SAPP_PROD22
+SAPP_PROD23
+SAPP_PROD24
+SAPP_PROD25
+SAPP_PROD26
+SAPP_PROD27
+SAPP_PROD28
+SAPP_PROD29
+SAPP_PROD30
+SAPP_PROD31
+SAPP_PROD32
+SAPP_PROD33
+SAPP_PROD01CH
+SAPP_PROD02CH
+SAPP_PROD03CH
+SAPP_PROD04CH
+SAPP_PROD05CH
+SAPP_PROD06CH
+SAPP_PROD07CH
+SAPP_PROD01AP
+SAPP_PROD02AP
+SAPP_PROD03AP
+
+[GINT-RIP-SAPP:vars]
+stack=osbgtw
+fmw_version=11.1.1.9
+

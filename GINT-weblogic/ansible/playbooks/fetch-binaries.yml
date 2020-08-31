@@ -1,0 +1,25 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  become_user: oracle
+  tasks:
+  - name: Fetch binaries to local
+    fetch:
+      src: "/oip_repo/middleware/files/Splunk_monitoring.zip"
+      dest: "/tmp/"
+      flat: yes
+    delegate_to: ptseelm-lx41084.ikeadt.com  
+    run_once: true
+  - name: Copy patches to servers
+    copy:
+      src: "/tmp/Splunk_monitoring.zip"
+      dest: "/u01/"
+  - name: Extract files into /u01
+    unarchive:
+      src: /u01/Splunk_monitoring.zip
+      dest: /u01
+      remote_src: yes
+      owner: oracle
+      group: oinstall
+
+

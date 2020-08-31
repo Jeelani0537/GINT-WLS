@@ -1,0 +1,4 @@
+. This directory has been created to host the scripts and other files that are owned by Apps team.
+. Any change to these files should be requested by Apps team.
+. Apps team owns complete responsibility of these scripts and files.
+. Any properties file that hosts secrets like passwords should be encrypted with the help of Ansible Vault

@@ -1,0 +1,28 @@
+<ENV>
+ |
+ |
+ ---GINT-Weblogic-<ENV>-V2
+ |   |
+ |   |
+ |   ---GINT-Weblogic-<ENV>-V2-ODI
+ |   |
+ |   |
+ |   ---GINT-Weblogic-<ENV>-V2-OSB
+ |   |
+ |   |
+ |   ---GINT-Weblogic-<ENV>-V2-SOA
+ |
+ |
+ ---GINT-Weblogic-<ENV>-V3
+ |   |
+ |   |
+ |   ---GINT-Weblogic-<ENV>-V3-GTW
+ |   |
+ |   |
+ |   ---GINT-Weblogic-<ENV>-V3-ODI
+ |   |
+ |   |
+ |   ---GINT-Weblogic-<ENV>-V3-OSB
+ |   |
+ |   |
+ |   ---GINT-Weblogic-<ENV>-V3-SOA

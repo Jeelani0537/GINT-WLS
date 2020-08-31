@@ -1,0 +1,35 @@
+- hosts: all
+  gather_facts: no
+  #any_errors_fatal: true
+  #serial: 1
+  become: true
+  become_user: oracle
+  
+  vars_files:
+  - ../group_vars/global.yml
+  
+  roles:
+  - role: ../roles/blackout
+    action: start
+    blackout_duration: 120
+    tags: blackoutstart
+
+  - role: ../roles/gint_lip_sapp_restart
+    action: stop
+    tags: sapp_stop
+
+ - role: ../roles/gint_lip_sapp_restart
+    action: stop
+    tags: lip_stop
+
+  - role: ../roles/gint_lip_sapp_restart
+    action: start
+    tags: sapp_start
+	
+  - role: ../roles/gint_lip_sapp_restart
+    action: start
+    tags: lip_start
+
+  - role: ../roles/blackout
+    action: stop
+    tags: blackoutstop

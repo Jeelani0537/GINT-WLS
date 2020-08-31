@@ -1,0 +1,26 @@
+- set_fact:
+    scripts_home: "/opt/oracle/scripts"
+
+- name: Create scripts directory
+  file:
+    path: "{{ scripts_home }}"
+    state: directory
+
+- include: admin-activities.yml
+  when: servers is search('Admin')
+
+- block:
+  - name: Copy cumulative status to one of the servers
+    copy: 
+      src: "/tmp/servers-status"
+      dest: "{{ scripts_home }}/cumulative-weblogic-servers-status.log"
+
+  - name: Prepare mailing list
+    set_fact: 
+      email_ids: "{{ email_ids }} {{ custom_mailing_list }}"
+    when: custom_mailing_list != "dummy" or custom_mailing_list|length > 0
+
+  - name: Send results over email
+    shell: "cat {{ scripts_home }}/cumulative-weblogic-servers-status.log | mail -s GINT-Weblogic-{{ env }}-Servers-Status -r {{ ansible_tower_mail_id }}@`hostname -d` {{ email_ids }}"
+  run_once: true
+

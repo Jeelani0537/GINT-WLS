@@ -1,0 +1,35 @@
+- name: Ensure PATCH_TOP directory exists and empty
+  file:
+    path: /opt/oracle/patches/PATCH_TOP
+    state: absent
+- file:
+    path: /opt/oracle/patches/PATCH_TOP
+    state: directory
+    recurse: yes
+
+#- name: Copy patch from ptseelm-lx4253.ikeadt.com to localhost
+#  fetch:
+#    src: "/opt/repo/patches/{{ patch_id }}.zip#"
+#    dest: /tmp/patches/
+#    flat: yes
+#  run_once: true
+#  delegate_to: ptseelm-lx4253.ikeadt.com
+
+- name: "Unzip patch {{ patch_id }}"
+  unarchive:
+    src: "/opt/oracle/patches/{{ patch_id }}.zip"
+    dest: /opt/oracle/patches/PATCH_TOP
+    remote_src: yes
+
+- name: "Apply {{ patch_id }}"
+  command: "sh /opt/oracle/patches/apply-patches.sh /opt/oracle/patches/PATCH_TOP /opt/oracle/FMW{{ fmw_ver }} {{ fmw_ver }}"
+  when: fmw_version is version_compare('12.2','==')
+  #register: applystatus
+  #failed_when: "'successfully applied' not in applystatus.stdout or 'OPatch failed with error code' in applystatus.stdout or 'You have already installed same patch' not in applystatus.stdout"
+
+- name: "Apply {{ patch_id }}"
+  command: "sh /opt/oracle/patches/11g-apply-patches.sh /opt/oracle/patches/PATCH_TOP {{ stack }} {{ fmw_ver }}"
+  when: fmw_version is version_compare('12.2','!=') and (stack == "soa")
+  #register: applystatus1
+  #failed_when: "'successfully applied' not in applystatus1.stdout or 'OPatch failed with error code' in applystatus1.stdout or 'You have already installed same patch' not in applystatus1.stdout"
+

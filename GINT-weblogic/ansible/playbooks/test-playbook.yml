@@ -1,0 +1,8 @@
+- hosts: all
+  #connection: ssh
+  gather_facts: no
+  #become: true
+  #become_user: oracle
+  #become_method: sudo
+  roles:
+  - role: test-role

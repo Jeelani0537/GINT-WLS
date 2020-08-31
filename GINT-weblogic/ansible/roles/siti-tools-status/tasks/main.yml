@@ -1,0 +1,91 @@
+- name: Create tempfile to write output
+  tempfile:     
+    state: file     
+    path: /tmp     
+    prefix: siti-tools-status  
+    #mode: 0744
+  register: outputFile
+
+- name: CHange permissions of tempfile
+  file:
+    path: "{{ outputFile.path }}"
+    mode: 0744
+
+- include: validate-status.yml endpoint="{{ item }}" delegate="localhost"
+  with_items:
+  - "https://iiptools.ikea.com/gitlab"
+  - "https://iiptools.ikea.com/jenkins"
+  - "https://iiptools.ikea.com/redmine"
+  - "https://iiptools.ikea.com/nexus"
+  - "https://prod-iiptools.ikea.com/gitlab"
+  - "https://prod-iiptools.ikea.com/jenkins"
+  - "https://prod-iiptools.ikea.com/redmine"
+  - "https://prod-iiptools.ikea.com/nexus"
+  - "https://fdtool.ikea.com/flexdeploy"
+  #delegate_to: localhost
+
+- include: validate-status.yml endpoint="{{ item }}" delegate="ptseelm-lx41084.ikeadt.com"
+  with_items:
+  - "https://iiptools.ikeadt.com/gitlab"
+  - "https://iiptools.ikeadt.com/jenkins"
+  - "https://iiptools.ikeadt.com/redmine"
+  - "https://iiptools.ikeadt.com/nexus"
+  - "https://ppe-iiptools.ikeadt.com/gitlab"
+  - "https://ppe-iiptools.ikeadt.com/jenkins"
+  - "https://ppe-iiptools.ikeadt.com/redmine"
+  - "https://ppe-iiptools.ikeadt.com/nexus"
+  - "https://fdtool.ikeadt.com/flexdeploy"
+  - "https://pte-iiptools.ikeadt.com/gitlab"
+  - "https://pte-iiptools.ikeadt.com/jenkins"
+  - "https://pte-iiptools.ikeadt.com/redmine"
+  - "https://pte-iiptools.ikeadt.com/nexus"
+  - "https://pte-fdtool.ikeadt.com/flexdeploy"
+  - "https://pte-iscauto-001-iiptools.ikeadt.com/gitlab"
+  - "https://pte-iscauto-001-iiptools.ikeadt.com/jenkins"
+  - "https://pte-iscauto-001-iiptools.ikeadt.com/redmine"
+  - "https://pte-iscauto-001-iiptools.ikeadt.com/nexus"
+  - "https://pte-isctestauto-001-iiptools.ikeadt.com/jenkins"
+  - "http://ptseelm-lx4943.ikeadt.com:8080"
+  #delegate_to: ptseelm-lx41084.ikeadt.com
+
+- name: Display results
+  shell: |
+          cat {{ outputFile.path }}
+  #delegate_to: ptseelm-lx41084.ikeadt.com
+
+- name: Copy siti-tools-status-generator.py
+  copy:
+    src: "../../../../apps/siti-tools-status-generator.py"
+    dest: "/tmp/siti-tools-status-generator.py"
+    mode: 0744
+
+- name: Remove report.html
+  file:
+    path: "/tmp/report.html"
+    state: absent
+
+- name: Prepare html report
+  shell: "python /tmp/siti-tools-status-generator.py {{ outputFile.path }}"
+
+- name: Display html report
+  shell: "cat /tmp/report.html"
+  register: html_output
+
+- block:  
+  - name: Pick domain name   
+    shell: "hostname -d"   
+    register: host_domain
+
+  - name: Send results over email   
+    shell: |           
+            (echo -e 'Subject: Tools status report \nFrom: {{ ansible_tower_mail_id }}@{{ host_domain.stdout }}\nTo: praveen.kandregula@ingka.com,jayaram.ayyappan@ingka.com\nContent-Type: text/html\n\n';cat /tmp/report.html) | /sbin/sendmail -f {{ ansible_tower_mail_id }}@{{ host_domain.stdout }} praveen.kandregula@ingka.com,jayaram.ayyappan@ingka.com
+  when: '"RED" in html_output.stdout'
+
+- name: Remove tempfile and siti-tools-status-generator.py
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items: 
+  - "{{ outputFile.path }}"
+  - "/tmp/siti-tools-status-generator.py"
+  - "/tmp/report.html"

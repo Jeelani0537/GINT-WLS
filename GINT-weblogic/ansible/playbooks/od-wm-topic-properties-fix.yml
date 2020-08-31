@@ -1,0 +1,15 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  become_user: oracle
+  #any_errors_fatal: true
+  
+  vars_files:
+  - ../group_vars/global.yml
+  
+  roles:
+  - role: config-backup
+  
+  - role: run-wlst
+    patch_file: od-wm-topic-properties-fix
+    when: servers is search('Admin')

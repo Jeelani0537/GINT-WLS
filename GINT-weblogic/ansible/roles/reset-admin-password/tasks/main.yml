@@ -1,0 +1,39 @@
+- name: Ensure /opt/oracle/scripts exists and clean
+  file:
+    path: /opt/oracle/scripts
+    state: "{{ item }}"
+  with_items:
+  - "absent"
+  - "directory"
+
+- name: Pick date
+  shell: "date +'%m%d%Y'"
+  register: dt_suffix
+  run_once: true
+
+- include: backup.yml
+
+- include: generate-password.yml
+  run_once: true
+  when: servers is search('Admin')
+
+#- debug:
+#    msg: "{{ passwd.stdout }}"
+
+- include: reset-password.yml
+  when: servers is search('Admin')
+
+- include: update-password.yml
+  when: fmw_version is version_compare('12.2','==')
+
+- name: Remove boot.properties from server's security folder
+  file:
+    path: "/opt/oracle/domains{{ fmw_version }}/{{ item[0] }}/servers/{{ item[1] }}/security/boot.properties"
+    state: absent
+  with_nested:
+  - "{{ domains.split(',') }}"
+  - "{{ servers.split(',') }}"
+
+- name: Send password over email
+  shell: "echo {{ group_names  }}-{{ inventory_hostname }}-new-password: {{ passwd.stdout }} | mail -s {{ env }}-{{ inventory_hostname }}-new-password-{{ dt.stdout }} -r {{ ansible_tower_mail_id }}@`hostname -d` praveen.kandregula@ikea.com"
+  when: servers is search('Admin')

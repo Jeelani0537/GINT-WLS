@@ -1,0 +1,80 @@
+- block:
+  - name: Who am I?
+    shell: "whoami"
+    register: usr
+
+  - debug: var=usr.stdout
+  become: yes
+  become_user: oracle
+
+#- debug: 
+#    var: item
+#  with_items:
+#  - "{{ domains }}"
+
+#- include_vars:
+#    file: "../../../domain_vars/{{ env }}/{{ domains }}.yml"
+#    name: domain_vars
+
+#- debug:
+#    var: item
+#  with_items:
+#  - "{{ domain_vars['servers'][inventory_hostname] }}"
+
+#- name: Display all variables/facts known for a host
+#  shell: "echo {{ inventory_hostname }}-{{ usr.stdout }}" 
+#  register: output
+#  delegate_to: localhost
+
+#- name: Print output
+#  debug:
+#    var: output
+#  delegate_to: localhost
+
+#- debug: msg="Failed" 
+#failed_when: play_hosts|length != 2
+
+#- name: Create temp directory to download file
+#  tempfile:
+#    state: directory
+#    path: /tmp
+#  register: tmpdir
+
+#- name: Download excel
+#  get_url:
+#    url: https://iiptools.ikea.com/repo/GINT-Capacity-Monthly-Report.xlsx 
+#    dest: "{{ tmpdir.path }}"
+
+- name: Print vars
+  debug:
+    msg: "{{ item }}-{{ fmw_version }}-{{ stack }}"
+  with_items:
+  - "{{ domains }}"
+
+- debug:
+    msg: "server- {{ item }}"
+  with_items:
+  - "{{ servers }}"
+
+- name: Include patch vars
+  include_vars:
+    file: "../../../patches/vars/12C-patches-jan-2019.yml"
+    name: patch_vars
+
+- name: List patch ids
+  shell: "echo patch-{{ item }}"
+  with_items:
+  - "{{ patch_vars['wls_ids'] }}"
+  - "{{ patch_vars[stack + '_ids'] }}"
+
+- name: List soa ids
+  shell: "echo patch-{{ item }}"
+  with_items:
+  - "{{ patch_vars['soa_ids'] }}"
+  when: stack == "soa"
+
+- name: List osbgtw ids
+  shell: "echo patch-{{ item }}"
+  with_items:
+  - "{{ patch_vars['osbgtw_ids'] }}"
+  when: stack == "osbgtw"

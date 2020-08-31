@@ -1,0 +1,39 @@
+   - name: Playbook for LIP_SAPP Restart
+     hosts: all
+     become: true
+     become_user: oracle
+     
+ - name: Create Folders for Placing Scripts
+      file:
+      path: "/opt/oracle/scripts"
+      state: directory
+      mode:0777
+      
+  - name: copy stop Script
+      copy:   
+        src: ../LIP_SAPP_stop.sh
+        dest: /opt/oracle/scripts
+        owner: oracle
+        group: oinstall
+        mode :0777
+        
+  - name: Copy Start Script
+      copy:
+        src: ../LIP_SAPP_start.sh
+        dest:/opt/oracle/scripts
+        owner: oracle
+        group: oinstall
+        mode :0777
+        
+  - name: Stopping LIP_SAPP Servers
+      include: "/opt/oracle/scripts/LIP_SAPP_stop.sh"
+      when:action =="stop"
+      
+  - name: Starting LIP_SAPP Servers
+      include: "/opt/oracle/scripts/LIP_SAPP_start.sh"
+      when:action =="start"
+      
+  - name: Delete the Folders
+      file:
+      path: "/opt/oracle/scripts"
+      state: absent

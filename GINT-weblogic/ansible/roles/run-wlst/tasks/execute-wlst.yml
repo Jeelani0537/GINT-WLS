@@ -1,0 +1,36 @@
+- name: "Check if {{ scriptname }}.py exists at /opt/oracle/scripts"
+  stat:
+    path: "/opt/oracle/scripts/{{ scriptname }}.py"
+  register: baselinescriptvalidation
+
+- block:
+  - name: Set fact for 11g
+    set_fact:
+      wlst_home: "/opt/oracle/FMW{{ fmw_version }}/Oracle_SOA1"
+    when: fmw_version is version_compare('12.2','!=')
+
+  - name: Set fact for 12C
+    set_fact:
+      wlst_home: "/opt/oracle/FMW{{ fmw_version }}/soa"
+    when: fmw_version is version_compare('12.2','==')
+  when: scriptname == "manage-composites" 
+
+- name: Set fact for non-soa wlst executions
+  set_fact:
+    wlst_home: "/opt/oracle/FMW{{ fmw_version }}/oracle_common"
+  when: scriptname != "manage-composites"
+
+- name: Execute script
+  shell: |
+          cd /opt/oracle/scripts && {{ wlst_home }}/common/bin/wlst.sh {{ scriptname}}.py {{ admhost }} {{ admport }} {{ dataSources }} {{ ds_activity }} {{ cds_activity }} {{ stack }} {{ fmw_version }} {{ vars[env + '_bam_url'] }} {{ domain_name }} "{{ compositesList }}"
+  when: (admhost is defined and admport is defined) and (admhost != "" and admport != "") and baselinescriptvalidation.stat.exists == true
+  register: scriptop
+  failed_when: '"Script execution failed" in scriptop.stdout or "Problem invoking WLST" in scriptop.stderr'
+
+- name: Execute script
+  shell: |
+          cd /opt/oracle/scripts && {{ wlst_home }}/oracle_common/common/bin/wlst.sh {{ scriptname }}.py {{ inventory_hostname }} 7001 {{ dataSources }} {{ ds_activity }} {{ cds_activity }} {{ stack }} {{ fmw_version }} {{ vars[env + '_bam_url'] }} {{ domain_name }} "{{ compositesList }}"
+  when: (admhost is defined and admport is defined) and (admhost == "" and admport == "") and baselinescriptvalidation.stat.exists == true
+  register: scriptop1
+  failed_when: '"Script execution failed" in scriptop1.stdout or "Problem invoking WLST" in scriptop1.stderr'
+

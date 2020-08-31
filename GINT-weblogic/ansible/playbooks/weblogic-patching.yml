@@ -1,0 +1,41 @@
+- hosts: all
+  gather_facts: no
+  #strategy: free
+  become: true
+  become_user: oracle
+  
+  vars_files:
+  - ../group_vars/global.yml
+  
+  roles:
+  - role: ../roles/blackout
+    action: start
+    tags: blackoutstart
+
+  - role: run-wlst
+    cds_activity: apply
+    tags: baseline
+    when: patch_file is defined and patch_file != ""
+
+  - role: ../roles/weblogic-restart
+    action: stop
+    #patching: "{{ patch_var }}"
+    tags: weblogicstop
+    ignore_errors: yes
+
+  - role: ../roles/weblogic-patch
+    when: patch_file is defined and patch_file != ""
+    tags: weblogicpatch
+
+  - role: ../roles/vip
+    action: start
+    tags: vipstart
+
+  - role: ../roles/weblogic-restart
+    action: start
+    #patching: "{{ patch_var }}"
+    tags: weblogicstart
+
+  - role: ../roles/blackout
+    action: stop
+    tags: blackoutstop

@@ -1,0 +1,28 @@
+- name: Create output directory
+  file:
+    state: directory
+    path: /opt/oracle/output/
+    mode: '777'
+
+- name: Extract AdminPort
+  shell: |
+          awk '/AdminChannel/ {p=1}; p; /<\/network-access-point>/ {p=0}' /opt/oracle/domains{{ fmw_version }}/{{ domain_name }}/config/config.xml | grep 'listen-port' | sed 's/listen-port//g' | sed 's/<//g' | sed 's/>//g' | sed 's/\///g' | sed 's/ //g'
+  register: adminport
+
+- name: Extract AdminHost
+  shell: |
+          awk '/AdminChannel/ {p=1}; p; /<\/network-access-point>/ {p=0}' /opt/oracle/domains{{ fmw_version }}/{{ domain_name }}/config/config.xml | grep 'listen-address' | sed 's/listen-address//g' | sed 's/<//g' | sed 's/>//g' | sed 's/\///g' | sed 's/ //g'
+  register: adminhost
+
+- name: Set facts if adminport and adminhost are not found in config.xml
+  set_fact:
+    adminport.stdout: '7001'
+    adminhost.stdout: '{{ inventory_hostname }}'
+  when: adminport.stdout != "" and adminhost.stdout != ""
+
+- name: Debug AdminHost and AdminPort
+  debug:
+    msg: "{{ item }}"
+  with_items: 
+  - "AdminHost: {{ adminhost.stdout }}"
+  - "AdminPort: {{ adminport.stdout }}"

@@ -1,0 +1,3 @@
+- include: execute-wlst.yml domain_name="{{ item }}"
+  when: servers is search('Admin')
+  with_items: "{{ domains.split(',') }}"

@@ -1,0 +1,7 @@
+- name: "opatch debug {{ msg }} patching"
+  #shell: "/opt/oracle/FMW{{ domain_vars['fmw_version'] }}/OPatch/opatch {{ item }}"
+  shell: "{{ opatch_home }}/opatch {{ item }}"
+  with_items:
+  - "version"
+  - "lspatches"
+  - "lsinventory"

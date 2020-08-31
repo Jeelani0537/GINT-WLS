@@ -1,0 +1,11 @@
+- name: Stop blackout "{{ blackout_name }}"
+  shell: "ls -F {{ OEM_AGENT_HOME }}/bin/emctl && {{ OEM_AGENT_HOME }}/bin/emctl stop blackout \"{{ blackout_name }}\""
+  register: stop_blackout_status
+  ignore_errors: true
+
+- debug: 
+    msg: "{{ stop_blackout_status }}"
+
+- debug: 
+    msg: "There seems to be a blackout set from OEM console. It has to be stopped from OEM."
+  when: "'was created by the console' in stop_blackout_status.stdout"

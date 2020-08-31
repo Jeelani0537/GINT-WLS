@@ -1,0 +1,10 @@
+- hosts: all,!ptseelm-lx4253.ikeadt.com
+  gather_facts: no
+
+  vars_files:
+  - ../group_vars/global.yml
+
+  roles:
+  - role: certificate-lcm-trigger
+    when: fmw_version is version_compare('12.2','==')
+    #delegate_to: localhost

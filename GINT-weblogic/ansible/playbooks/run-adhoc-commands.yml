@@ -1,0 +1,55 @@
+- hosts: all
+  gather_facts: no
+  vars_files:
+  - ../group_vars/global.yml   
+
+  tasks:
+
+  - name: Run adhoc command as oracle user
+    shell: "{{ cmd }}"
+    become: yes
+    become_user: oracle
+    register: outp
+
+  - debug:
+      msg: "{{ inventory_hostname }} - {{ outp.stdout}}"
+
+  - name: Assign date
+    shell: "date +%m%d%Y%H%M%S"
+    register: datetoday
+    run_once: true
+
+  - name: Collating output
+    shell: echo -e "\n {{ inventory_hostname }} \n {{ outp.stdout }} " >> "/tmp/adhoc_command_outp{{ datetoday.stdout }}.txt"
+    delegate_to: localhost
+#    become: false    
+ 
+  - block:
+    
+    - name: Copy files to one of the servers
+      copy:
+        src: "/tmp/adhoc_command_outp{{ datetoday.stdout }}.txt"
+        dest: /tmp/
+
+    - name: Collate files into the single file.
+      shell: |
+            echo -e "Justification : {{ justification }} \n \n +++++++Adhoc Command Output++++++" >> "/tmp/adhocfinal{{ datetoday.stdout }}"
+            cat "/tmp/adhoc_command_outp{{ datetoday.stdout }}.txt" >> "/tmp/adhocfinal{{ datetoday.stdout }}"
+
+    - name: Send the collated file as mail
+      shell: "cat /tmp/adhocfinal{{ datetoday.stdout }} | mail -s Adhoc-command-output  -r {{ ansible_tower_mail_id }}@`hostname -d` {{ email_ids }}"
+
+    - name: Delete the files from the remote server
+      file:
+        path: "/tmp/adhocfinal{{ datetoday.stdout }}"
+        state: absent
+
+    - name: Delete the files from Ansible server
+      file:
+        path: "/tmp/adhoc_command_outp{{ datetoday.stdout }}.txt"
+        state: absent
+      delegate_to: localhost
+#      become: false
+
+    run_once: true
+

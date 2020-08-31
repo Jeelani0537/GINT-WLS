@@ -1,0 +1,20 @@
+- debug: 
+    msg: "{{ item }}"
+  with_items:
+  - "{{ action }}"
+
+- name: Pick date
+  shell: "date +'%m%d%Y-%H%M%S'"
+  register: dt
+
+- name: Update servers when servers_updated is defined
+  set_fact:
+    servers: "{{ servers_updated }}"
+  when: servers_updated is defined and servers_updated != ""
+
+#- include: manage-restart.yml dt_suffix="{{ dt.stdout }}" server_activity="{{ action }}"
+- include: stop-servers.yml dt_suffix="{{ dt.stdout }}" server_activity="{{ action }}"
+  when: action == "stop"
+ 
+- include: start-servers.yml dt_suffix="{{ dt.stdout }}" server_activity="{{ action }}"
+  when: action == "start"

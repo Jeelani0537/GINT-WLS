@@ -1,0 +1,12 @@
+- hosts: all
+  gather_facts: no
+  become: true
+  become_user: oracle
+  
+  vars_files:
+  - ../group_vars/global.yml
+  
+  roles:
+  - role: ../roles/blackout
+    action: "{{ user_input }}"
+

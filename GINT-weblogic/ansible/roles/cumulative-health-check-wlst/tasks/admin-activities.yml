@@ -1,0 +1,63 @@
+#- set_fact:
+#    scripts_home: "/opt/oracle/scripts"
+
+#- name: Create scripts directory
+#  file:
+#    path: "{{ scripts_home }}"
+#    state: directory
+
+- name: Copy domain properties preparation script
+  copy:
+    src: "../../../../wlst/miscelleneous/prepare-domain-properties.py"
+    dest: "{{ scripts_home }}"
+
+- name: Prepare domain properties
+  shell: "python {{ scripts_home }}/prepare-domain-properties.py {{ fmw_version }} {{ domains }}"
+  register: domain_properties
+
+- debug:
+    msg: "{{ domain_properties.stdout }}"
+
+- name: Create tempfile
+  tempfile:
+    state: file
+    path: /tmp
+  register: outputFile
+  #run_once: true
+  #delegate_to: localhost
+  #become: no
+
+- name: Copy credentials
+  copy:
+    src: "../../../../wlst/credentials.properties"
+    dest: "{{ scripts_home }}/.credentials.properties"
+  no_log: true
+
+- name: Copy wlst scripts
+  copy:
+    src: "{{ item }}"
+    dest: "{{ scripts_home }}"
+  with_items:
+  - "../../../../wlst/commons.py"
+  - "../../../../wlst/miscelleneous/cumulative-health-check-wlst.py"
+
+- name: Execute script
+  shell: "cd {{ scripts_home }} && /opt/oracle/FMW{{ fmw_version }}/oracle_common/common/bin/wlst.sh {{ scripts_home }}/cumulative-health-check-wlst.py \"{{ domain_properties.stdout }}\" {{ outputFile.path }} {{ group_names[-1] }}"
+
+- name: Print output
+  shell: "cat {{ outputFile.path }}"
+  register: status
+
+- name: Housekeeping
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+  - "{{ scripts_home }}/.credentials.properties"
+  - "{{ outputFile.path }}"
+
+- name: Write status to local server
+  shell: "echo \"{{ status.stdout }}\" >> /tmp/servers-status"
+  delegate_to: localhost
+  become: no
+

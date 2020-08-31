@@ -1,0 +1,54 @@
+- name: Print results
+  shell: "cat /tmp/user-status.txt"
+  register: op
+  ignore_errors: yes
+
+- debug:
+    msg: "{{ op.stdout }}"
+
+- name: Remove /tmp/user-status.txt
+  file:
+    path: "/tmp/user-status.txt"
+    state: absent
+  become: yes
+  become_user: oracle
+  ignore_errors: yes
+
+- block:
+  - name: Collate results to localhost
+    shell: "echo {{ inventory_hostname }}:  {{ item }} >> /tmp/user-status.txt"
+    with_items:
+    - "{{ op.stdout_lines }}"
+
+  - name: "Validate if /tmp/user-status.txt exists"
+    stat:
+      path: "/tmp/user-status.txt"
+    register: outputexists
+    run_once: true
+  delegate_to: localhost
+
+- block:
+  - name: Pick date
+    shell: "date +'%D'"
+    register: dt
+
+  - name: Copy collated results from Ansible server to one of the servers
+    copy:
+      src: "/tmp/user-status.txt"
+      dest: "/tmp/"
+  
+  - name: Send results over email
+    shell: "cat /tmp/user-status.txt | sort | mail -s {{ env }}-user-validation-report-{{ dt.stdout }} -r {{ ansible_tower_mail_id }}@`hostname -d` {{ email_ids }}"
+
+  - name: Remove /tmp/user-status.txt
+    file:
+      path: "/tmp/user-status.txt"
+      state: absent
+
+  - name: Remove tempfile on ansible server
+    file:
+      path: "/tmp/user-status.txt"
+      state: absent
+    delegate_to: localhost
+  run_once: true
+  when: outputexists.stat.exists == true

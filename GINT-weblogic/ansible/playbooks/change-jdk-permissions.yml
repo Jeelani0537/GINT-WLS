@@ -1,0 +1,11 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  become_user: oracle
+
+  tasks:
+  - name: Update jdk1.8.0_212 permissions to 755
+    file:
+      path: /opt/oracle/jdk1.8.0_212
+      mode: '0755'
+      recurse: yes

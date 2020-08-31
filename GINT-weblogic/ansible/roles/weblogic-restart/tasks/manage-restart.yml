@@ -1,0 +1,38 @@
+#- name: Include domain vars
+#  include_vars:
+#    file: "../../../domain_vars/{{ env }}/{{ domain_name }}.yml"
+#    name: domain_vars
+
+- block:
+  - name: Start NodeManager
+    shell: "cd /opt/oracle/domains{{ fmw_version }}/{{ item }}/nodemanager && nohup ./startNm.sh 1>&2 >> /opt/oracle/domains{{ fmw_version }}/{{ item }}/nodemanager/logs/nodemanager.log &"
+    with_items:
+    - "{{ domains.split(',') }}"
+
+  - name: Validate nodemanager lock file availability
+    stat:
+      path: "/opt/oracle/domains{{ fmw_version }}/{{ item }}/nodemanager/logs/nodemanager.log.lck"
+    register: nmlockstatus
+    failed_when: not nmlockstatus.stat.exists
+    with_items:
+    - "{{ domains.split(',') }}"
+  when: server_activity == "start"
+
+- name: Update servers when servers_updated is defined
+  set_fact:
+    servers: "{{ servers_updated }}"
+  when: servers_updated is defined and servers_updated != ""
+
+#- include: control-server.yml control_status="{{ server_activity }}" server_name="{{ server }}" fmw_ver="{{ fmw_version }}"
+  #with_items:
+  #- "{{ servers.split(',') }}"
+  #loop_control:
+  #  loop_var: server
+
+- include: control-server.yml control_status="{{ server_activity }}" fmw_ver="{{ fmw_version }}"
+
+- name: Stop NodeManager
+  shell: "cd /opt/oracle/domains{{ fmw_version }}/{{ item }}/nodemanager && ./stopNodeManager.sh"
+  when: server_activity == "stop"
+  with_items:
+  - "{{ domains.split(',') }}"

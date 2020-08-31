@@ -1,0 +1,9 @@
+- name: List Content of Directory completedDeliveriesEU Region
+  shell:
+    cmd:  /u01/scripts/FetchFileDetails.sh
+    chdir: /oitp_odi/SAREC/completedDeliveries/EU
+    
+- name: List Content of the Directory Completed
+  shell:
+    cmd:  /u01/scripts/FetchFileDetails.sh
+    chdir: /oitp_odi/SAREC/theoreticalSales/EU

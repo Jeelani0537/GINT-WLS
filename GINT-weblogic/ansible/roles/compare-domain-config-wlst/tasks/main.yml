@@ -1,0 +1,57 @@
+- name: Fail if supplied hosts are not 2 
+  fail: 
+    msg: "Terminating as hosts received are not equal to 2"
+  when: play_hosts|length != 2
+  run_once: true
+
+- name: Ensure domain-details.txt exist in tmp folder
+  stat:
+    path: "/tmp/domain-details.txt"
+  register: xmlvalidator
+  failed_when: xmlvalidator.stat.exists != true
+
+#- debug:
+#  msg: "{{ xmlvalidator }}"
+
+- name: Create temp directory to place file
+  tempfile:
+    state: directory
+    path: /tmp
+  register: tmpdir
+  delegate_to: localhost
+  run_once: true
+
+- name: Fetch config.xml and place them in tmp directory
+  fetch:
+    src: "/tmp/domain-details.txt"
+    dest: "{{ tmpdir.path }}/{{ inventory_hostname }}-domain-details.txt"
+    flat: yes
+
+- block:
+  - name: Copy config comparison script
+    copy: 
+      src: comparison.sh
+      dest: /tmp
+
+  - name: Run config comparison script
+    shell: "sh /tmp/comparison.sh {{ tmpdir.path }}"
+    register: results
+    ignore_errors: true
+
+  #- name: Format output
+  #  set_fact:
+  #    format_results: "{{ results.stdout_lines | replace('\t',' ') }}"
+
+  #- debug:
+  #    msg: "{{ format_results }}"
+
+  #- name: Print output
+  #  shell: "cat {{ tmpdir.path }}/results"
+
+  - name: Remove tmp directory
+    file:
+      path: "{{ tmpdir.path }}"
+      state: absent
+  delegate_to: localhost
+  run_once: true
+

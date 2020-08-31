@@ -1,0 +1,86 @@
+#- include: 12c-extract.yml
+#  when: fmw_version is version_compare('12.2','==')
+
+- include: 11g-extract.yml
+  #when: fmw_version is version_compare('12.2','!=')
+
+- name: Debug AdminHost and AdminPort
+  debug:
+    msg: "{{ item1 }}"
+  with_items: 
+  - "AdminHost: {{ admhost }}"
+  - "AdminPort: {{ admport }}"
+  loop_control:
+    loop_var: item1
+  when: admhost is defined and admport is defined
+
+- name: Create directory to place scripts
+  file:
+    state: directory
+    path: /opt/oracle/scripts
+
+- name: "Copy commons.py script"
+  copy:
+    src: "{{ script }}"
+    dest: "/opt/oracle/scripts/"
+  with_items:
+  - "../../../../wlst/commons.py"
+  loop_control:
+    loop_var: script
+  ignore_errors: true
+
+- name: Copy patch files
+  copy:
+    src: "../../../../wlst/miscelleneous/{{ script }}.py"
+    dest: "/opt/oracle/scripts/"
+  with_items:
+  - "{{ patch_file.split(',') }}"
+  loop_control:
+    loop_var: script
+  ignore_errors: true
+
+- name: Copy credentials
+  copy:
+    src: "../../../../wlst/credentials.properties"
+    dest: "/opt/oracle/scripts/.credentials.properties"
+  no_log: true
+
+#- name: "Check if {{ patch_file }}.py exists at /opt/oracle/scripts"
+#  stat:
+#    path: "/opt/oracle/scripts/{{ patch_file }}.py"
+#  register: baselinescriptvalidation
+
+#- set_fact:
+#    additional_params: "test"
+#  when: additional_params is not defined
+
+- include: execute-wlst.yml scriptname={{ script }}
+  with_items:
+  - "{{ patch_file.split(',') }}"
+  loop_control:
+    loop_var: script
+
+#- name: Execute script
+#  shell: "cd /opt/oracle/scripts && /opt/oracle/FMW{{ fmw_version }}/oracle_common/common/bin/wlst.sh {{ script }}.py {{ admhost }} {{ admport }} {{ dataSources }} {{ ds_activity }} {{ cds_activity }} {{ stack }} {{ fmw_version }} {{ vars[env + '_bam_url'] }}"
+#  when: baselinescriptvalidation.stat.exists == true and (admhost is defined and admport is defined) and (admhost != "" and admport != "")
+#  with_items:
+#  - "{{ patch_file.split(',') }}"
+#  loop_control:
+#    loop_var: script
+#  register: scriptop
+#  failed_when: '"Script execution failed" in scriptop.stdout or "Problem invoking WLST" in scriptop.stderr'
+ 
+#- name: Execute script
+#  shell: "cd /opt/oracle/scripts && /opt/oracle/FMW{{ fmw_version }}/oracle_common/common/bin/wlst.sh {{ script }}.py {{ inventory_hostname }} 7001 {{ dataSources }} {{ ds_activity }} {{ cds_activity }} {{ stack }} {{ fmw_version }} {{ vars[env + '_bam_url'] }}"
+#  when: baselinescriptvalidation.stat.exists == true and (admhost is defined and admport is defined) and (admhost == "" and admport == "")
+#  with_items:
+#  - "{{ patch_file.split(',') }}"
+#  loop_control:
+#    loop_var: script
+#  register: scriptop1
+#  failed_when: '"Script execution failed" in scriptop1.stdout or "Problem invoking WLST" in scriptop1.stderr'
+
+- name: Remove credentials
+  file:
+    path: "/opt/oracle/scripts/.credentials.properties"
+    state: absent

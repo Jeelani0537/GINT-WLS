@@ -1,0 +1,52 @@
+- name: Pick date
+  shell: "date +'%m%d%Y-%H%M%S'"
+  register: dt
+
+- name: Update boot.properties under domain home with new password
+  lineinfile:
+    path: "/opt/oracle/domains{{ fmw_version }}/{{ item }}/boot.properties"
+    regexp: "^password="
+    line: "password={{ passwd.stdout }}"
+    backup: yes
+    state: present
+  with_items:
+  - "{{ domains.split(',') }}"
+  ignore_errors: yes
+
+#NM will place a boot.properties with encrypted password in absence if below file
+- name: Backup server specific boot.properties
+  shell: "cd /opt/oracle/domains{{ fmw_version }}/{{ item[0] }}/servers/{{ item[1] }}/security && cp boot.properties boot.properties-{{ dt.stdout }}"
+  with_nested:
+  - "{{ domains.split(',') }}"
+  - "{{ servers.split(',') }}"
+  ignore_errors: yes
+
+- name: Update server specific boot.properties
+  lineinfile:
+    path: "/opt/oracle/domains{{ fmw_version }}/{{ item[0] }}/servers/{{ item[1] }}/security/boot.properties"
+    regexp: "^password="
+    line: "password={{ passwd.stdout }}"
+    backup: yes
+    state: present
+  with_nested:
+  - "{{ domains.split(',') }}"
+  - "{{ servers.split(',') }}"
+  ignore_errors: yes
+
+
+- name: Update nodemanager boot.properties with new password
+  lineinfile:
+    path: "/opt/oracle/domains{{ fmw_version }}/{{ item[0] }}/servers/{{ item[1] }}/data/nodemanager/boot.properties"
+    regexp: "^password="
+    line: "password={{ passwd.stdout }}"
+    backup: yes
+    state: present
+  with_nested:
+  - "{{ domains.split(',') }}"
+  - "{{ servers.split(',') }}"
+  ignore_errors: yes
+
+- name: Send password over email
+  #shell: "echo '{{ group_names  }}-{{ inventory_hostname }}-new-password: {{ passwd.stdout }}. This password will be applicable after domain restart' | mail -s {{ env }}-{{ inventory_hostname }}-new-password-{{ dt_suffix.stdout }} -r {{ ansible_tower_mail_id }}@`hostname -d` kakum7@ikea.com"
+  shell: "printf 'Groups: {{ group_names  }}\nHost: {{ inventory_hostname }}\nNew password: {{ passwd.stdout }}\nThis password will be applicable after domain restart' | mail -s {{ env }}-{{ inventory_hostname }}-new-password-{{ dt_suffix.stdout }} -r {{ ansible_tower_mail_id }}@`hostname -d` {{ confidential_email_ids }}" 
+  when: servers is search('Admin')

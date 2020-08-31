@@ -1,0 +1,453 @@
+##########################################################################################
+#######################################V2 inventory start#################################
+##########################################################################################
+[ODI-PROD-i1-2]
+itseelm-lx4596.ikea.com  servers=AdminServer,odi_server1
+itseelm-lx4597.ikea.com  servers=odi_server2
+itseelm-lx4598.ikea.com  servers=odi_server3
+itseelm-lx4599.ikea.com  servers=odi_server4
+itseelm-lx41022.ikea.com  servers=odi_server5
+itseelm-lx41023.ikea.com  servers=odi_server6
+itseelm-lx41024.ikea.com  servers=odi_server7
+itseelm-lx41025.ikea.com  servers=odi_server8
+
+[ODI-PROD-i1-2:vars]
+domains=ITOWD0827
+
+[ODI-PROD-i1-3]
+itseelm-lx4600.ikea.com  servers=AdminServer,odi_server1
+itseelm-lx4601.ikea.com  servers=odi_server2
+itseelm-lx4602.ikea.com  servers=odi_server3
+itseelm-lx4603.ikea.com  servers=odi_server4
+
+[ODI-PROD-i1-3:vars]
+domains=ITOWD0837
+
+[ODI-PROD-i1-4]
+itseelm-lx4926.ikea.com  servers=AdminServer,odi_server1
+itseelm-lx4927.ikea.com  servers=odi_server2
+itseelm-lx4928.ikea.com  servers=odi_server3
+itseelm-lx4929.ikea.com  servers=odi_server4
+
+[ODI-PROD-i1-4:vars]
+domains=ITOWD1277
+
+[ODI-PROD-i1-6]
+itcnchn-lx4057.ikea.com  servers=AdminServer,odi_server1
+itcnchn-lx4058.ikea.com  servers=odi_server2
+itcnchn-lx4059.ikea.com  servers=odi_server3
+itcnchn-lx4060.ikea.com  servers=odi_server4
+itcnchn-lx4061.ikea.com  servers=odi_server5
+itcnchn-lx4062.ikea.com  servers=odi_server6
+itcnchn-lx4063.ikea.com  servers=odi_server7
+itcnchn-lx4064.ikea.com  servers=odi_server8
+
+[ODI-PROD-i1-6:vars]
+domains=ITOWD1839
+
+[GINT-Weblogic-PROD-V2-ODI:children]
+ODI-PROD-i1-2	
+ODI-PROD-i1-3	
+ODI-PROD-i1-4
+ODI-PROD-i1-6
+
+[GINT-Weblogic-PROD-V2-ODI:vars]
+stack=odi
+fmw_version=11.1.1.6
+
+[OSB-PROD-i1-1]
+itseelm-lx4586.ikea.com  servers=AdminServer,osb_server1
+itseelm-lx4587.ikea.com  servers=osb_server2
+itseelm-lx4588.ikea.com  servers=osb_server3
+itseelm-lx4589.ikea.com  servers=osb_server4
+
+[OSB-PROD-i1-1:vars]
+domains=ITOWD0797
+
+[OSB-PROD-i1-3]
+itseelm-lx4932.ikea.com  servers=AdminServer,osb_server1
+itseelm-lx4933.ikea.com  servers=osb_server2
+itseelm-lx4934.ikea.com  servers=osb_server3
+itseelm-lx4935.ikea.com  servers=osb_server4
+
+[OSB-PROD-i1-3:vars]
+domains=ITOWD1317
+
+[OSB-PROD-i1-4]
+itcnchn-lx4051.ikea.com  servers=AdminServer,osb_server1
+itcnchn-lx4052.ikea.com  servers=osb_server2
+itcnchn-lx4053.ikea.com  servers=osb_server3
+itcnchn-lx4054.ikea.com  servers=osb_server4
+
+[OSB-PROD-i1-4:vars]
+domains=ITOWD1819
+
+[GINT-Weblogic-PROD-V2-OSB:children]
+OSB-PROD-i1-1	
+OSB-PROD-i1-3	
+OSB-PROD-i1-4
+
+[GINT-Weblogic-PROD-V2-OSB:vars]
+stack=osbgtw
+fmw_version=11.1.1.7
+
+[DELIS-SOA-PROD]
+itseelm-lx4963.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx4964.ikea.com  servers=soa_server2
+itseelm-lx4966.ikea.com  servers=soa_server3
+itseelm-lx4967.ikea.com  servers=soa_server4
+
+[DELIS-SOA-PROD:vars]
+domains=ITOWD1327
+fmw_version=11.1.1.7
+
+[SOA-PROD-i1-2]
+itseelm-lx4576.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx4577.ikea.com  servers=soa_server2
+itseelm-lx4578.ikea.com  servers=soa_server3
+itseelm-lx4579.ikea.com  servers=soa_server4
+itseelm-lx4985.ikea.com  servers=soa_server5
+itseelm-lx4986.ikea.com  servers=soa_server6
+itseelm-lx4987.ikea.com  servers=soa_server7
+itseelm-lx4988.ikea.com  servers=soa_server8
+
+[SOA-PROD-i1-2:vars]
+domains=ITOWD0767
+	
+[SOA-PROD-i1-3]
+itseelm-lx4580.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx4581.ikea.com  servers=soa_server2
+itseelm-lx4582.ikea.com  servers=soa_server3
+itseelm-lx4583.ikea.com  servers=soa_server4
+
+[SOA-PROD-i1-3:vars]
+domains=ITOWD0777
+
+[SOA-PROD-i1-7]
+itseelm-lx4936.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx4937.ikea.com  servers=soa_server2
+itseelm-lx4938.ikea.com  servers=soa_server3
+itseelm-lx4939.ikea.com  servers=soa_server4
+
+[SOA-PROD-i1-7:vars]
+domains=ITOWD1287
+
+[GINT-Weblogic-PROD-V2-SOA:children]
+DELIS-SOA-PROD
+SOA-PROD-i1-2	
+SOA-PROD-i1-3	
+SOA-PROD-i1-7
+
+[GINT-Weblogic-PROD-V2-SOA:vars]
+stack=soa
+fmw_version=11.1.1.7	
+
+[GINT-Weblogic-PROD-V2:children]
+GINT-Weblogic-PROD-V2-ODI
+GINT-Weblogic-PROD-V2-OSB
+GINT-Weblogic-PROD-V2-SOA
+
+########################################################################################
+#######################################V2 inventory end#################################
+########################################################################################
+
+###----------------------------------------------------------------------------------###
+
+########################################################################################
+#####################################V3 inventory start#################################
+########################################################################################
+[GTW-PROD-i1-1]
+itseelm-lx41493.ikea.com  servers=AdminServer,gtw_server1
+itseelm-lx41494.ikea.com  servers=gtw_server2
+itseelm-lx41496.ikea.com  servers=gtw_server3
+itseelm-lx41497.ikea.com  servers=gtw_server4
+
+[GTW-PROD-i1-1:vars]
+domains=ITOWD2777
+	
+[GTW-PROD-i1-2]
+itseelm-lx41498.ikea.com  servers=AdminServer,gtw_server1
+itseelm-lx41499.ikea.com  servers=gtw_server2
+itseelm-lx41500.ikea.com  servers=gtw_server3
+itseelm-lx41501.ikea.com  servers=gtw_server4
+
+[GTW-PROD-i1-2:vars]
+domains=ITOWD2787
+
+[GTW-PROD-i1-3]
+itcnchn-lx4132.ikea.com  servers=AdminServer,gtw_server1
+itcnchn-lx4133.ikea.com  servers=gtw_server2
+
+[GTW-PROD-i1-3:vars]
+domains=ITOWD2969
+	
+[GTW-PROD-i1-4]
+itcnchn-lx4134.ikea.com  servers=AdminServer,gtw_server1
+itcnchn-lx4135.ikea.com  servers=gtw_server2
+
+[GTW-PROD-i1-4:vars]
+domains=ITOWD2979
+
+[GINT-Weblogic-PROD-V3-GTW:children]
+GTW-PROD-i1-1	
+GTW-PROD-i1-2	
+GTW-PROD-i1-3	
+GTW-PROD-i1-4
+
+[GINT-Weblogic-PROD-V3-GTW:vars]
+stack=osbgtw
+
+[ODI-PROD-i1-7]
+itseelm-lx41463.ikea.com  servers=AdminServer,ODI_server1
+itseelm-lx41464.ikea.com  servers=ODI_server2
+itseelm-lx41465.ikea.com  servers=ODI_server3
+itseelm-lx41466.ikea.com  servers=ODI_server4
+
+[ODI-PROD-i1-7:vars]
+domains=ITOWD2737
+
+[INTODI-PROD-i1-1]
+itseelm-lx41515.ikea.com  servers=AdminServer,ODI_server1
+itseelm-lx41516.ikea.com  servers=ODI_server2
+itseelm-lx41517.ikea.com  servers=ODI_server3
+itseelm-lx41518.ikea.com  servers=ODI_server4
+
+[INTODI-PROD-i1-1:vars]
+domains=ITOWD2817
+
+[ODI-PROD-i1-9]
+itcnchn-lx4128.ikea.com  servers=AdminServer,ODI_server1
+itcnchn-lx4129.ikea.com  servers=ODI_server2
+
+[ODI-PROD-i1-9:vars]
+domains=ITOWD2949
+	
+[ODI-PROD-i1-10]
+itcnchn-lx4130.ikea.com  servers=AdminServer,ODI_server1
+itcnchn-lx4131.ikea.com  servers=ODI_server2
+
+[ODI-PROD-i1-10:vars]
+domains=ITOWD2959
+
+[ODI-PROD-i1-11]
+itseelm-lx41802.ikea.com  servers=AdminServer,ODI_server1
+itseelm-lx41803.ikea.com  servers=ODI_server2
+itseelm-lx41804.ikea.com  servers=ODI_server3
+itseelm-lx41805.ikea.com  servers=ODI_server4
+
+[ODI-PROD-i1-11:vars]
+domains=ITOWD4024
+
+[GINT-Weblogic-PROD-V3-ODI:children]
+ODI-PROD-i1-7	
+INTODI-PROD-i1-1	
+ODI-PROD-i1-9
+ODI-PROD-i1-10
+ODI-PROD-i1-11
+
+[GINT-Weblogic-PROD-V3-ODI:vars]
+stack=odi
+
+[OSB-PROD-i1-5]
+itseelm-lx41495.ikea.com  servers=AdminServer,osb_server1
+itseelm-lx41503.ikea.com  servers=osb_server2
+itseelm-lx41504.ikea.com  servers=osb_server3
+itseelm-lx41505.ikea.com  servers=osb_server4
+
+[OSB-PROD-i1-5:vars]
+domains=ITOWD2797
+	
+[OSB-PROD-i1-6]
+itseelm-lx41506.ikea.com  servers=AdminServer,osb_server1
+itseelm-lx41507.ikea.com  servers=osb_server2
+itseelm-lx41508.ikea.com  servers=osb_server3
+itseelm-lx41509.ikea.com  servers=osb_server4
+
+[OSB-PROD-i1-6:vars]
+domains=ITOWD2807
+
+[OSB-PROD-i1-7]
+itcnchn-lx4136.ikea.com  servers=AdminServer,osb_server1
+itcnchn-lx4137.ikea.com  servers=osb_server2
+
+[OSB-PROD-i1-7:vars]
+domains=ITOWD2989
+	
+[OSB-PROD-i1-8]
+itcnchn-lx4138.ikea.com  servers=AdminServer,osb_server1
+itcnchn-lx4139.ikea.com  servers=osb_server2
+
+[OSB-PROD-i1-8:vars]
+domains=ITOWD2999
+
+[OSB-PROD-i1-9]
+itseelm-lx41817.ikea.com  servers=AdminServer,osb_server1
+itseelm-lx41818.ikea.com  servers=osb_server2
+itseelm-lx41815.ikea.com  servers=osb_server3
+itseelm-lx41816.ikea.com  servers=osb_server4
+
+[OSB-PROD-i1-9:vars]
+domains=ITOWD4027
+
+[OSB-PROD-i1-10]
+itseelm-lx41893.ikea.com  servers=AdminServer,osb_server1
+itseelm-lx41894.ikea.com  servers=osb_server2
+itseelm-lx41895.ikea.com  servers=osb_server3
+itseelm-lx41896.ikea.com  servers=osb_server4
+
+[OSB-PROD-i1-10:vars]
+domains=ITOWD4032
+
+[OSB-PROD-i1-11]
+itseelm-lx41938.ikea.com  servers=AdminServer,osb_server1
+itseelm-lx41939.ikea.com  servers=osb_server2
+itseelm-lx41940.ikea.com  servers=osb_server3
+itseelm-lx41941.ikea.com  servers=osb_server4
+
+[OSB-PROD-i1-11:vars]
+domains=ITOWD4033
+
+[GINT-Weblogic-PROD-V3-OSB:children]
+OSB-PROD-i1-5	
+OSB-PROD-i1-6	
+OSB-PROD-i1-7	
+OSB-PROD-i1-8	
+OSB-PROD-i1-9
+OSB-PROD-i1-10
+OSB-PROD-i1-11
+
+[GINT-Weblogic-PROD-V3-OSB:vars]
+stack=osbgtw
+
+
+
+
+[SOA-PROD-i1-11]
+itseelm-lx41510.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx41511.ikea.com  servers=soa_server2
+itseelm-lx41512.ikea.com  servers=soa_server3
+itseelm-lx41513.ikea.com  servers=soa_server4
+
+[SOA-PROD-i1-11:vars]
+domains=ITOWD2827
+	
+[SOA-PROD-i1-12]
+itseelm-lx41514.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx41519.ikea.com  servers=soa_server2
+itseelm-lx41520.ikea.com  servers=soa_server3
+itseelm-lx41521.ikea.com  servers=soa_server4
+
+[SOA-PROD-i1-12:vars]
+domains=ITOWD2837
+	
+[SOA-PROD-i1-13]
+itseelm-lx41522.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx41523.ikea.com  servers=soa_server2
+itseelm-lx41524.ikea.com  servers=soa_server3
+itseelm-lx41525.ikea.com  servers=soa_server4
+
+[SOA-PROD-i1-13:vars]
+domains=ITOWD2847
+
+[SOA-PROD-i1-14]
+itseelm-lx41528.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx41529.ikea.com  servers=soa_server2
+itseelm-lx41530.ikea.com  servers=soa_server3
+itseelm-lx41531.ikea.com  servers=soa_server4
+
+[SOA-PROD-i1-14:vars]
+domains=ITOWD2857
+
+[SOA-PROD-i1-15]
+itcnchn-lx4120.ikea.com  servers=AdminServer,soa_server1
+itcnchn-lx4121.ikea.com  servers=soa_server2
+
+[SOA-PROD-i1-15:vars]
+domains=ITOWD2889
+
+[SOA-PROD-i1-16]
+itcnchn-lx4122.ikea.com  servers=AdminServer,soa_server1
+itcnchn-lx4123.ikea.com  servers=soa_server2
+
+[SOA-PROD-i1-16:vars]
+domains=ITOWD2899
+
+[SOA-PROD-i1-17]
+itcnchn-lx4124.ikea.com  servers=AdminServer,soa_server1
+itcnchn-lx4125.ikea.com  servers=soa_server2
+
+[SOA-PROD-i1-17:vars]
+domains=ITOWD2929
+
+[SOA-PROD-i1-18]
+itcnchn-lx4126.ikea.com  servers=AdminServer,soa_server1
+itcnchn-lx4127.ikea.com  servers=soa_server2
+
+[SOA-PROD-i1-18:vars]
+domains=ITOWD2939
+
+[SOA-PROD-i1-19]
+itseelm-lx41806.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx41807.ikea.com  servers=soa_server2
+itseelm-lx41808.ikea.com  servers=soa_server3
+itseelm-lx41809.ikea.com  servers=soa_server4
+
+[SOA-PROD-i1-19:vars]
+domains=ITOWD4025
+
+[SOA-PROD-i1-20]
+itseelm-lx41810.ikea.com  servers=AdminServer,soa_server1
+itseelm-lx41811.ikea.com  servers=soa_server2
+itseelm-lx41812.ikea.com  servers=soa_server3
+itseelm-lx41813.ikea.com  servers=soa_server4
+
+[SOA-PROD-i1-20:vars]
+domains=ITOWD4026
+
+[GINT-Weblogic-PROD-V3-SOA:children]
+SOA-PROD-i1-11	
+SOA-PROD-i1-12	
+SOA-PROD-i1-13	
+SOA-PROD-i1-14	
+SOA-PROD-i1-15	
+SOA-PROD-i1-16	
+SOA-PROD-i1-17	
+SOA-PROD-i1-18
+SOA-PROD-i1-19
+SOA-PROD-i1-20
+
+[GINT-Weblogic-PROD-V3-SOA:vars]
+stack=soa	
+
+[GINT-Weblogic-PROD-V3:children]
+GINT-Weblogic-PROD-V3-GTW
+GINT-Weblogic-PROD-V3-ODI
+GINT-Weblogic-PROD-V3-OSB
+GINT-Weblogic-PROD-V3-SOA
+
+[GINT-Weblogic-PROD-V3:vars]
+fmw_version=12.2
+
+########################################################################################
+#####################################V3 inventory end###################################
+########################################################################################
+
+########################################################################################
+#####################################V2&V3 CHINA start##################################
+########################################################################################
+[CHINA:children]
+ODI-PROD-i1-6
+OSB-PROD-i1-4
+GTW-PROD-i1-3
+GTW-PROD-i1-4
+ODI-PROD-i1-9
+ODI-PROD-i1-10
+OSB-PROD-i1-7
+OSB-PROD-i1-8
+SOA-PROD-i1-15
+SOA-PROD-i1-16
+SOA-PROD-i1-17
+SOA-PROD-i1-18
+########################################################################################
+#####################################V2&V3 CHINA end####################################
+########################################################################################

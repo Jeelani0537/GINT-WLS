@@ -1,0 +1,74 @@
+- name: Remove backed up tmp,cache and data folders
+  shell: "ls -d /opt/oracle/*/*/servers/*/{{ item }}* | grep -v {{ item }}$ | xargs rm -rf"
+  with_items:
+  - "tmp"
+  - "cache"
+  #- "data"
+  ignore_errors: true
+  
+- name: Remove heapdump backups
+  shell: "find /opt/oracle/*/*/*.hprof* -mtime +3 | xargs rm"
+  ignore_errors: true
+
+- name: Pick date
+  shell: "date +'%d%m%Y-%H%M%S'"
+  register: dt
+
+#- name: Rotate OEM agent log file
+#  shell: "ls -F {{ OEM_AGENT_HOME }}/sysman/log/{{ item }} && cd {{ OEM_AGENT_HOME }}/sysman/log && cp {{ item }} {{ item }}-{{ dt.stdout }} ; > {{ item }}"
+#  with_items:
+#  - "emagent.nohup"
+#
+#- name: Remove OEM agent log files that are older than 10 days
+#  shell: "cd {{ OEM_AGENT_HOME }}/sysman/log && find {{ item }}* -mtime +10 | grep -v {{ item }}$ | xargs rm"
+#  with_items:
+#  - "emagent.nohup"
+#  - "gcagent.log"
+#  ignore_errors: true
+
+- name: Nullify dbfs.out log file
+  shell: "cd /u01/tmp && > dbfs.out"
+  ignore_errors: true
+
+- name: Rotate out file from /opt/oracle
+  shell: "cd /opt/oracle/domains{{ fmw_version }}/{{ item[0] }}/servers/{{ item[1] }}/logs && cp {{ item[1] }}.out {{ item[1] }}.out-{{ dt.stdout }} ; > {{ item[1] }}.out ; gzip {{ item[1] }}.out-{{ dt.stdout }}"
+  with_nested:
+  - "{{ domains.split(',') }}"
+  - "{{ servers.split(',') }}"
+  #ignore_errors: yes
+
+- name: Rotate out file from /u01
+  shell: "cd /u01/app/oracle/admin/logs/{{ item[0] }}/{{ item[1] }} && cp {{ item[1] }}.out {{ item[1] }}.out-{{ dt.stdout }} ; > {{ item[1] }}.out ; gzip {{ item[1] }}.out-{{ dt.stdout }}"
+  with_nested:
+  - "{{ domains.split(',') }}"
+  - "{{ servers.split(',') }}"
+  #ignore_errors: yes
+
+- name: Purge server logs that are older than 15 days
+  shell: "find {{ item[1] }}/*.{{ item[0] }}* -mtime +15 | grep -v {{ item[0] }}$ | xargs rm"
+  with_nested:
+  - ["out", "log"]
+  - ["/u01/app/oracle/admin/logs/*", "/u01/app/oracle/admin/logs/*/*", "/opt/oracle/domains*/*/servers/*/logs"]
+  ignore_errors: true
+  
+- name: Blackout status
+  shell: "ls -F {{ OEM_AGENT_HOME }}/bin/emctl && {{ OEM_AGENT_HOME }}/bin/emctl status blackout | grep Blackoutname | awk -F\" = \" '{print \"Blackout name:\" $2}' >> {{ outputFile.path }}"
+  register: blackoutstatus
+
+- name: VIP status
+  shell: "if [[ $(sudo wlipctl status ip -a | egrep 'inactive' | wc -l) -gt 0 ]]; then   echo 'VIPs Down'; fi >> {{ outputFile.path }}"
+  when: env == "PPE" or env == "PROD" or env == "LIP-SAPP"
+
+- name: OEM agent status
+  shell: "if [ $({{ OEM_AGENT_HOME }}/bin/emctl status agent | grep -i 'Agent is Running and Ready' | wc -l) -ne 1 ]; then   echo 'OEM Agent is not running'; fi >> {{ outputFile.path }}"
+
+- name: Get disk usage stats
+  shell: "if [[ $(timeout 10 df -Ph | grep '{{ item }}$' | awk '{print $5}' | cut -d'%' -f1) -gt 75 ]]; then echo $(df -Ph | grep '{{ item }}$' | awk '{print $6 \" - \" $5}') ; fi >> {{ outputFile.path }}"
+  with_items:
+  - "/u01/app/oracle"
+  - "/opt/oracle"
+  - "/u01"
+  - "/ikea"
+  ignore_errors: true
+  when: dfop.stdout != ""
+  tags: dustats

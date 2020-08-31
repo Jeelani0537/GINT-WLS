@@ -1,0 +1,62 @@
+# Protect LIP/SAP legacy installations
+# where WDT is installed via RPM
+#- name: "Create {{ WDT_HOME }}"
+#  file:
+#    path: "{{ WDT_HOME }}"
+#    state: directory
+- name: "Check if WDT was installed via RPM"
+  shell: rpm -qf {{ WDT_HOME }}
+  register: cmd_res
+  args:
+     warn: no
+  # We dont want to see errors as they are misleading,
+  # an error just tells that we are good to install
+  changed_when: False
+  failed_when: False
+#  If we are using  LIP/SAP installation of WDT, stop
+- name: "End installation if WDT was installed via RPM, we cannot install it"
+  fail:
+     msg: "WDT is installed via RPM on this server"
+  when: cmd_res.rc == 0
+     
+- name: "Check if the WDT {{  wdt_version }} is installed"
+  stat:
+         path:  "{{ WDT_HOME }}/version_{{ wdt_version }}.txt"
+  register: isInstalled
+  changed_when: False
+# We dont want to see errors as they are misleading,
+- name: "Install WDT {{  wdt_version }}"
+  block:
+  - name: "Remove existing WDT binaries"
+    file:
+         state: absent
+         path: "{{ WDT_HOME }}/"
+# Fetching Patches to Local Servers,
+  - name: Fetch patches to local server
+    fetch:
+         src: "/oip_repo/middleware/wdt/weblogic-deploy-{{ wdt_version }}.zip"
+         dest: /tmp/
+         flat: yes
+    delegate_to: ptseelm-lx41084.ikeadt.com
+    run_once: true
+# Copying Patches to Servers,
+  - name: Copy patches to servers
+    copy:
+         src: "/tmp/weblogic-deploy-{{ wdt_version }}.zip"
+         dest: "/opt/oracle/"
+#with_items:
+#- "{{ files.stdout_lines }}"
+# Extracting Patch to the Location,
+  - name: "Extract weblogic-deploy-{{ wdt_version }}.zip into /opt/oracle"
+    unarchive:
+         src: /opt/oracle/weblogic-deploy-{{ wdt_version }}.zip
+         dest: /opt/oracle
+         remote_src: yes
+         owner: oracle
+         group: oinstall
+# Creating Version for the File,
+  - name: Create version file for {{ wdt_version }}
+    file:
+         path: "{{ WDT_HOME }}/version_{{ wdt_version }}.txt"
+         state: touch
+    when: isInstalled.stat.exists == False

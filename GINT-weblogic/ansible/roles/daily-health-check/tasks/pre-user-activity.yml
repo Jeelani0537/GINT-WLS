@@ -1,0 +1,37 @@
+- name: Create tempfile
+  tempfile:
+    state: file
+    path: /tmp
+    prefix: backup-dump-purge-output
+  register: outputFile
+  run_once: true
+  tags: dustats
+
+- name: Check if mount points are loading
+  shell: "timeout 30 df"
+  register: dfop
+  ignore_errors: true
+  tags: dustats
+
+- name: Validate if mount points have loaded
+  shell: "echo 'Mount points are not loading' >> {{ outputFile.path }}"
+  when: dfop.stdout == ""
+
+#- name: Get disk usage stats
+#  shell: "if [[ $(timeout 10 df -Ph | grep '{{ item }}$' | awk '{print $5}' | cut -d'%' -f1) -gt 75 ]]; then echo $(df -Ph | grep '{{ item }}$' | awk '{print $6 \" - \" $5}') ; fi >> {{ outputFile.path }}"
+#  with_items:
+#  - "/u01/app/oracle"
+#  - "/opt/oracle"
+#  - "/u01"
+#  ignore_errors: true
+#  when: dfop.stdout != ""
+
+- name: Check if defunct process exists
+  shell: "if [[ $(ps -ef | grep -i defunct | grep -v 'grep' | wc -l) -gt 0 ]]; then   echo 'defunct process found'; fi >> {{ outputFile.path }}"
+
+- name: "Change permissions of {{ outputFile.path }}"
+  file: 
+    path: "{{ outputFile.path }}"
+    state: file
+    mode: 0777
+  tags: dustats

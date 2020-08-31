@@ -1,0 +1,451 @@
+##########################################################################
+###################+++++++SAPP-Non-Prod-servers+++++++++##################
+##########################################################################
+
+
+[SAPP_PTE_DEV_1]
+ptseelm-lx4571.ikeadt.com  servers=AdminServer,ptdevsappp001m01.ikeadt.com
+
+[SAPP_PTE_DEV_1:vars]
+domains=PTSAPP4571
+
+[SAPP_PTE_DEV_2]
+ptseelm-lx4572.ikeadt.com  servers=AdminServer,ptdevsappp002m01.ikeadt.com
+
+[SAPP_PTE_DEV_2:vars]
+domains=PTSAPP4572
+
+[SAPP_PTE_TEST_1]
+ptseelm-lx4588.ikeadt.com  servers=AdminServer,pttestsapp001m01.ikeadt.com
+
+[SAPP_PTE_TEST_1:vars]
+domains=PTSAPP4588
+
+[SAPP_PTE_TEST_2]
+ptseelm-lx4589.ikeadt.com  servers=AdminServer,sapp_server1
+
+[SAPP_PTE_TEST_2:vars]
+domains=PTSAPP4589
+
+
+[SAPP_PTE_TEST_3]
+ptseelm-lx41365.ikeadt.com  servers=AdminServer,pttestsapp003m01.ikeadt.com
+
+[SAPP_PTE_TEST_3:vars]
+domains=PTSAPP41365
+
+[SAPP_PTE_TEST_4]
+ptseelm-lx41366.ikeadt.com  servers=AdminServer,pttestsapp004m01.ikeadt.com
+
+[SAPP_PTE_TEST_4:vars]
+domains=PTSAPP41366
+
+[SAPP_CTEF_1]
+cfseelm-lx4295.ikeadt.com  servers=AdminServer,ctefsapp001m01.ikeadt.com
+
+[SAPP_CTEF_1:vars]
+domains=CFSAPP4295
+
+[SAPP_CTEF_2]
+cfseelm-lx4296.ikeadt.com  servers=AdminServer,ctefsapp002m01.ikeadt.com
+
+[SAPP_CTEF_2:vars]
+domains=CFSAPP4296
+
+[SAPP_CTEF_3]
+cfseelm-lx4308.ikeadt.com  servers=AdminServer,ctefsapp003m01.ikeadt.com
+
+[SAPP_CTEF_3:vars]
+domains=CFSAPP4308
+
+[SAPP_CTEF_4]
+cfseelm-lx4309.ikeadt.com  servers=AdminServer,ctefsapp004m01.ikeadt.com
+
+[SAPP_CTEF_4:vars]
+domains=CFSAPP4309
+
+[SAPP_CTEF_5]
+cfseelm-lx4597.ikeadt.com  servers=AdminServer,ctefsapp005m01.ikeadt.com
+
+[SAPP_CTEF_5:vars]
+domains=CFSAPP4597
+
+[SAPP_CTEF_6]
+cfseelm-lx4598.ikeadt.com  servers=AdminServer,ctefsapp006m01.ikeadt.com
+
+[SAPP_CTEF_6:vars]
+domains=CFSAPP4598
+
+[SAPP_CTEF_7]
+cfseelm-lx4599.ikeadt.com  servers=AdminServer,ctefsapp007m01.ikeadt.com
+
+[SAPP_CTEF_7:vars]
+domains=CFSAPP4599
+
+[SAPP_CTEF_8]
+cfseelm-lx4600.ikeadt.com  servers=AdminServer,ctefsapp008m01.ikeadt.com
+
+[SAPP_CTEF_8:vars]
+domains=CFSAPP4600
+
+[SAPP_CTEF_9]
+cfseelm-lx4696.ikeadt.com  servers=AdminServer,ctefsapp009m01.ikeadt.com
+
+[SAPP_CTEF_9:vars]
+domains=CFSAPP4696
+
+[SAPP_CTEF_10]
+cfseelm-lx4697.ikeadt.com  servers=AdminServer,ctefsapp010m01.ikeadt.com
+
+[SAPP_CTEF_10:vars]
+domains=CFSAPP4697
+
+[SAPP_CTEF_11]
+cfseelm-lx4698-ikeadt.com  servers=AdminServer,ctefsapp011m01.ikeadt.com
+
+[SAPP_CTEF_11:vars]
+domains=CFSAPP4698
+
+[SAPP_CTEF_12]
+cfseelm-lx4699.ikeadt.com  servers=AdminServer,ctefsapp012m01.ikeadt.com
+
+[SAPP_CTEF_12:vars]
+domains=CFSAPP4699
+
+[SAPP_CTEF_13]
+cfseelm-lx4700.ikeadt.com  servers=AdminServer,ctefsapp013m01.ikeadt.com
+
+[SAPP_CTEF_13]:vars
+domains=CFSAPP4700
+
+[SAPP_CTEF_14]
+cfseelm-lx4701.ikeadt.com  servers=AdminServer,ctefsapp014m01.ikeadt.com
+
+[SAPP_CTEF_14:vars]
+domains=CFSAPP4701
+
+[SAPP_CTEF_15]
+cfseelm-lx4702.ikeadt.com  servers=AdminServer,ctefsapp015m01.ikeadt.com
+
+[SAPP_CTEF_15:vars]
+domains=CFSAPP4702
+
+[SAPP_CTEF_16]
+cfseelm-lx4703.ikeadt.com  servers=AdminServer,ctefsapp016m01.ikeadt.com
+
+[SAPP_CTEF_16:vars]
+domains=CFSAPP4703
+
+[SAPP_CTEF_17]
+cfseelm-lx4704.ikeadt.com  servers=AdminServer,ctefsapp017m01.ikeadt.com
+
+[SAPP_CTEF_17:vars]
+domains=CFSAPP4704
+
+[SAPP_CTEF_18]
+cfseelm-lx4705.ikeadt.com  servers=AdminServer,ctefsapp018m01.ikeadt.com
+
+[SAPP_CTEF_18:vars]
+domains=CFSAPP4705
+
+[SAPP_CTEF_19]
+cfseelm-lx4706.ikeadt.com  servers=AdminServer,ctefsapp019m01.ikeadt.com
+
+[SAPP_CTEF_19:vars]
+domains=CFSAPP4706
+
+[SAPP_CTEF_20]
+CFSEELM-LX4707.ikeadt.com  servers=AdminServer,ctefsapp020m01.ikeadt.com
+
+[SAPP_CTEF_20:vars]
+domains=CFSAPP4707
+
+[SAPP_CTEF_21]
+cfseelm-lx4708.ikeadt.com  servers=AdminServer,ctefsapp021m01.ikeadt.com
+
+[SAPP_CTEF_21:vars]
+domains=CFSAPP4708
+
+[SAPP_CTEF_22]
+cfseelm-lx4709.ikeadt.com  servers=AdminServer,ctefsapp022m01.ikeadt.com
+
+[SAPP_CTEF_22:vars]
+domains=CFSAPP4709
+
+[SAPP_CTEF_23]
+cfcnchn-lx4005.ikeadt.com  servers=AdminServer,ctefsapp023m01.ikeadt.com
+
+[SAPP_CTEF_23:vars]
+domains=CFSAPP4005
+
+[SAPP_CTEF_24]
+cfseelm-lx4910.ikeadt.com  servers=AdminServer,ctefsapp024m01.ikeadt.com
+
+[SAPP_CTEF_24:vars]
+domains=CFSAPP4910
+
+[SAPP_CTEF-25]
+cfseelm-lx4911.ikeadt.com  servers=AdminServer,ctefsapp025m01.ikeadt.com
+
+[SAPP_CTEF-25:vars]
+domains=CFSAPP4911
+
+[SAPP_CTEF_26]
+cfseelm-lx4912.ikeadt.com  servers=AdminServer,ctefsapp026m01.ikeadt.com
+
+[SAPP_CTEF_26:vars]
+domains=CFSAPP4912
+
+[SAPP_CTEF_27]
+cfseelm-lx4913.ikeadt.com  servers=AdminServer,ctefsapp027m01.ikeadt.com
+
+[SAPP_CTEF_27:vars]
+domains=CFSAPP4913
+
+[SAPP_CTEF_28]
+cfseelm-lx4914.ikeadt.com  servers=AdminServer,ctefsapp028m01.ikeadt.com
+
+[SAPP_CTEF_28:vars]
+domains=CFSAPP4914
+
+[SAPP_CTEF_29]
+cfseelm-lx4895.ikeadt.com  servers=AdminServer,ctefsapp029m01.ikeadt.com
+
+[SAPP_CTEF_29:vars]
+domains=CFSAPP4895
+
+[SAPP_CTEF_30]
+cfseelm-lx4896.ikeadt.com  servers=AdminServer,ctefsapp030m01.ikeadt.com
+
+[SAPP_CTEF_30:vars]
+domains=CFSAPP4896
+
+[SAPP_CTEF_31]
+cfseelm-lx4897.ikeadt.com  servers=AdminServer,ctefsapp031m01.ikeadt.com
+
+[SAPP_CTEF_31:vars]
+domains=CFSAPP4897
+
+[SAPP_CTEF_32]
+cfseelm-lx4898.ikeadt.com  servers=AdminServer,ctefsapp032m01.ikeadt.com
+
+[SAPP_CTEF_32:vars]
+domains=CFSAPP4898
+
+[SAPP_CTEF_33]
+cfseelm-lx4900.ikeadt.com  servers=AdminServer,ctefsapp033m01.ikeadt.com
+
+[SAPP_CTEF_33:vars]
+domains=CFSAPP4900
+
+[SAPP_CTEF_34]
+cfseelm-lx4901.ikeadt.com  servers=AdminServer,ctefsapp034m01.ikeadt.com
+
+[SAPP_CTEF_34:vars]
+domains=CFSAPP4901
+
+[SAPP_CTEF_35]
+cfseelm-lx4902.ikeadt.com  servers=AdminServer,ctefsapp035m01.ikeadt.com
+
+[SAPP_CTEF_35:vars]
+domains=CFSAPP490
+
+[SAPP_CTEF_36]
+cfseelm-lx4903.ikeadt.com  servers=AdminServer,ctefsapp036m01.ikeadt.com
+
+[SAPP_CTEF_36:vars]
+domains=CFSAPP4903
+
+[SAPP_CTEF_37]
+cfseelm-lx4904.ikeadt.com  servers=AdminServer,ctefsapp037m01.ikeadt.com
+
+[SAPP_CTEF_37:vars]
+domains=CFSAPP4904
+
+[SAPP_CTEF_38]
+cfseelm-lx4905.ikeadt.com  servers=AdminServer,ctefsapp038m01.ikeadt.com
+
+[SAPP_CTEF_38:vars]
+domains=CFSAPP4905
+
+[SAPP_CTEF_39]
+fseelm-lx4906.ikeadt.com  servers=AdminServer,ctefsapp039m01.ikeadt.com
+
+[SAPP_CTEF_39:vars]
+domains=CFSAPP4906
+
+[SAPP_CTEF_40]
+cfseelm-lx4907.ikeadt.com  servers=AdminServer,ctefsapp040m01.ikeadt.com
+
+[SAPP_CTEF_40:vars]
+domains=CFSAPP4907
+
+[SAPP_CTEF_41]
+cfseelm-lx4908.ikeadt.com  servers=AdminServer,ctefsapp041m01.ikeadt.com
+
+[SAPP_CTEF_41:vars]
+domains=CFSAPP4908
+
+[SAPP_CTEF_42]
+cfseelm-lx4909.ikeadt.com  servers=AdminServer,ctefsapp042m01.ikeadt.com
+
+[SAPP_CTEF_42:vars]
+domains=CFSAPP4909
+
+[SAPP_CTEF_43]
+cfseelm-lx4965.ikeadt.com  servers=AdminServer,ctefsapp043m01.ikeadt.com
+
+[SAPP_CTEF_43:vars]
+domains=CFSAPP4965
+
+[SAPP_CTEM_1]
+cmseelm-lx4263.ikeadt.com  servers=AdminServer,ctemsapp043m01.ikeadt.com
+
+[SAPP_CTEM_1:vars]
+domains=CMSAPP4263
+
+[SAPP_CTEM_2]
+cmseelm-lx4264.ikeadt.com  servers=AdminServer,ctemsapp044m01.ikeadt.com
+
+[SAPP_CTEM_2:vars]
+domains=CMSAPP4264
+
+[SAPP_CTEM_CHINA]
+cmcnchn-lx4049.ikeadt.com  servers=AdminServer,ctemsapp045m01.ikeadt.com
+
+[SAPP_CTEM_CHINA:vars]
+domains=CMSAPP4049
+
+[SAPP_PPE_1]
+ppseelm-lx4618.ikeadt.com  servers=AdminServer,ppsapp001m01.ikeadt.com
+ppseelm-lx4620.ikeadt.com  servers=ppsapp001m02.ikeadt.com
+
+[SAPP_PPE_1:vars]
+domains=PPSAPP001
+
+[SAPP_PPE_2]	
+ppseelm-lx4126.ikeadt.com  servers=AdminServer,ppsapp002m01.ikeadt.com
+ppseelm-lx4127.ikeadt.com  servers=ppsapp002m02.ikeadt.com
+
+[SAPP_PPE_2:vars]
+domains=PPSAPP002
+
+[SAPP_PPE_3]	
+ppseelm-lx42099.ikeadt.com  servers=AdminServer,ppsapp003m01.ikeadt.com   
+ppseelm-lx42100.ikeadt.com  servers=ppsapp003m02.ikeadt.com
+
+[SAPP_PPE_3]
+domains=PPSAPP003
+
+[SAPP_PPE_4]	
+ppseelm-lx42101.ikeadt.com  servers=AdminServer,ppsapp004m01.ikeadt.com
+ppseelm-lx42102.ikeadt.com  servers=ppsapp004m02.ikeadt.com
+
+[SAPP_PPE_4:vars]
+domains=PPSAPP004
+
+[SAPP_PPE_5]
+ppseelm-lx42103.ikeadt.com  servers=AdminServer,ppsapp005m01.ikeadt.com
+ppseelm-lx42104.ikeadt.com  servers=ppsapp005m02.ikeadt.com
+
+[SAPP_PPE_5:vars]
+domains=PPSAPP005
+
+[SAPP_PPE_6]
+ppseelm-lx42105.ikeadt.com  servers=AdminServer,ppsapp006m01.ikeadt.com
+ppseelm-lx42106.ikeadt.com  servers=ppsapp006m02.ikeadt.com
+
+[SAPP_PPE_6:vars]
+domains=PPSAPP006
+
+[SAPP_PPE_7]
+ppseelm-lx42241.ikeadt.com  servers=AdminServer,ppsapp007m01.ikeadt.com
+ppseelm-lx42242.ikeadt.com  servers=ppsapp007m02.ikeadt.com
+
+[SAPP_PPE_7:vars]
+domains=PPSAPP007
+
+[SAPP_PPE_1_CENTRAL]
+ppseelm-lx4755.ikeadt.com  servers=AdminServer,sapp_server1
+ppseelm-lx4757.ikeadt.com  servers=sapp_server2
+
+[SAPP_PPE_1_CENTRAL:vars]
+domains=PPOWD1177
+
+[SAPP_PTE_ENVIRONMENTS:children]
+SAPP_PTE_DEV_1
+SAPP_PTE_DEV_2
+SAPP_PTE_TEST_1
+SAPP_PTE_TEST_2
+SAPP_PTE_TEST_3
+SAPP_PTE_TEST_4
+
+[SAPP_CTE_ENVIRONMENTS:children]
+SAPP_CTEF_1
+SAPP_CTEF_2
+SAPP_CTEF_3
+SAPP_CTEF_4
+SAPP_CTEF_5
+SAPP_CTEF_6
+SAPP_CTEF_7
+SAPP_CTEF_8
+SAPP_CTEF_9
+SAPP_CTEF_10
+SAPP_CTEF_11
+SAPP_CTEF_12
+SAPP_CTEF_13
+SAPP_CTEF_14
+SAPP_CTEF_15
+SAPP_CTEF_16
+SAPP_CTEF_17
+SAPP_CTEF_18
+SAPP_CTEF_19
+SAPP_CTEF_20
+SAPP_CTEF_21
+SAPP_CTEF_22
+SAPP_CTEF_23
+SAPP_CTEF_24
+SAPP_CTEF-25
+SAPP_CTEF_26
+SAPP_CTEF_27
+SAPP_CTEF_28
+SAPP_CTEF_29
+SAPP_CTEF_30
+SAPP_CTEF_31
+SAPP_CTEF_32
+SAPP_CTEF_33
+SAPP_CTEF_34
+SAPP_CTEF_35
+SAPP_CTEF_36
+SAPP_CTEF_37
+SAPP_CTEF_38
+SAPP_CTEF_39
+SAPP_CTEF_40
+SAPP_CTEF_41
+SAPP_CTEF_42
+SAPP_CTEF_43
+
+[SAPP_CTE_ENVIRONMENTS:children]
+SAPP_CTEM_1
+SAPP_CTEM_2
+SAPP_CTEM_CHINA
+
+[SAPP_PPE_ENVIRONMENTS:children]
+SAPP_PPE_1
+SAPP_PPE_2
+SAPP_PPE_4
+SAPP_PPE_5
+SAPP_PPE_6
+SAPP_PPE_7
+SAPP_PPE_1_CENTRAL
+
+[SAPP_NON_PROD:children]
+SAPP_CTE_ENVIRONMENTS
+SAPP_CTEM_ENVIRONMENTS
+SAPP_PTE_ENVIRONMENTS
+SAPP_PPE_ENVIRONMENTS
+
+[LIPSAPP_NONPROD_SERVERS:vars]
+fmw_version=11.1.1.9
+env=SAPP-Non-Prod
+stack=osbgtw

@@ -1,0 +1,19 @@
+- name: Create directory to place scripts
+  file:
+    state: directory
+    path: /opt/oracle/scripts
+
+- name: Copy shell script
+  copy:
+    src: "{{ item }}"
+    dest: /opt/oracle/scripts
+  with_items:
+  - "../../../../shell-scripts/{{ script_name }}.sh" 
+
+- name: Execute shell script
+  #shell: "cd /opt/oracle/scripts && sh {{ script_name }}.sh {{ env }}_old_key {{ env }}_new_key"
+  shell: "cd /opt/oracle/scripts && sh {{ script_name }}.sh {{ vars[env + '_old_key'] }} {{ vars[env + '_new_key'] }} {{ vars[env + '_version'] }}"
+
+- include: appd-key-verification.yml
+  when: script_name == "appdkeychange"
+  tags: verify

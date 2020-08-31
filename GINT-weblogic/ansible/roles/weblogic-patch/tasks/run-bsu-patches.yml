@@ -1,0 +1,28 @@
+- name: Ensure cache_dir is clean
+  file:
+    path: "/opt/oracle/FMW{{ fmw_version }}/utils/bsu/cache_dir"
+    state: "{{ status }}"
+  with_items:
+  - "absent"
+  - "directory"
+  loop_control:
+    loop_var: status
+
+#- name: Copy patch from ptseelm-lx4253.ikeadt.com to localhost
+#  fetch:
+#    src: "/opt/repo/patches/{{ patch_id }}.zip"
+#    dest: /tmp/patches/
+#    flat: yes
+#  run_once: true
+#  delegate_to: ptseelm-lx4253.ikeadt.com
+
+- name: "Unzip {{ patch_id }} to cache_dir"
+  unarchive:
+    src: "/opt/oracle/patches/{{ patch_id }}.zip"
+    dest: "/opt/oracle/FMW{{ fmw_version }}/utils/bsu/cache_dir/"
+    remote_src: yes
+
+- name: Run apply-bsu-patches.sh script
+  shell: "sh /opt/oracle/patches/bsu-apply-patches.sh {{ fmw_version }}"
+  register: bsu_apply_status
+  failed_when: '"resolve conflict condition and execute patch installation again" in bsu_apply_status.stdout'

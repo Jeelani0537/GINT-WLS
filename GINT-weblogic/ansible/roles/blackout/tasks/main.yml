@@ -1,0 +1,9 @@
+- include: blackout-status.yml
+
+- include: blackout-start.yml 
+  when: action == "start"
+
+- include: blackout-stop.yml blackout_name="{{ item }}"
+  with_items:
+  - "{{ blackout_status.stdout_lines }}"
+  when: action == "stop" and blackout_status.stdout_lines is defined and blackout_status.stdout_lines != ""

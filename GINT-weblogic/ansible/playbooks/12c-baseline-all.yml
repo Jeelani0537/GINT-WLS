@@ -1,0 +1,35 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  become_user: oracle
+  #any_errors_fatal: true
+  
+  vars_files:
+  - ../group_vars/global.yml
+  
+  roles:
+  - role: config-backup
+  
+  - role: run-wlst
+    patch_file: create-users
+    when: servers is search('Admin')
+
+  - role: run-wlst
+    patch_file: applyAuditChanges
+    when: servers is search('Admin')
+
+  - role: run-wlst
+    patch_file: osbPolicyPermissionFix
+    when: servers is search('Admin') and stack == "osbgtw"
+
+  - role: run-wlst
+    patch_file: server-identity-failed-fix
+    when: servers is search('Admin')
+
+  - role: run-wlst
+    patch_file: updateGracefulShutdownTimeout
+    when: servers is search('Admin')
+
+  - role: run-wlst
+    patch_file: updateMuxerClassAndDisableLockout
+    when: servers is search('Admin')

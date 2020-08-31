@@ -1,0 +1,5 @@
+- hosts: all
+  connection: ssh
+  gather_facts: false
+  roles:
+  - role: validate-space-allocation

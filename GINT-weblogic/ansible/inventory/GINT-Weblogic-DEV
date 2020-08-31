@@ -1,0 +1,222 @@
+##########################################################################################
+#######################################V2 inventory start#################################
+##########################################################################################
+[DELIS-SOA-PTE-DEV]
+ptseelm-lx4813.ikeadt.com  domains=PTOWD1875  servers=AdminServer,soa_server1  fmw_version=11.1.1.7
+
+[ODI-Dev-i1-2] 
+ptseelm-lx4363.ikeadt.com  domains=PTOWD0452  servers=AdminServer,odi_server1  fmw_version=11.1.1.6
+
+[ODI-Dev-i1-4]
+ptseelm-lx41086.ikeadt.com  domains=PTOWD3282  servers=AdminServer,odi_server1  fmw_version=11.1.1.6
+
+[OSB-Dev-i1-1]
+ptseelm-lx4364.ikeadt.com  domains=PTOWD0462,PTOWD0752  servers=AdminServer,osb_server1  fmw_version=11.1.1.7
+
+[OSB-Dev-i1-2]
+ptseelm-lx4364.ikeadt.com  domains=PTOWD0462,PTOWD0752  servers=AdminServer,osb_server1  fmw_version=11.1.1.7
+
+[OSB-Dev-i1-3]
+ptseelm-lx4531.ikeadt.com domains=PTOWD1122 servers=AdminServer,osb_server1  fmw_version=11.1.1.7
+
+[OSB-Dev-i1-4]
+ptseelm-lx41001.ikeadt.com  domains=PTOWD2872  servers=AdminServer,osb_server1  fmw_version=11.1.1.7
+
+[SOA-Dev-i1-2]
+ptseelm-lx4361.ikeadt.com  domains=PTOWD0442,PTOWD0742  servers=AdminServer,soa_server1  fmw_version=11.1.1.7
+ptseelm-lx4362.ikeadt.com  domains=PTOWD0442,PTOWD0742  servers=soa_server2  fmw_version=11.1.1.7 
+
+[SOA-Dev-i1-3]
+ptseelm-lx4361.ikeadt.com  domains=PTOWD0442,PTOWD0742  servers=AdminServer,soa_server1  fmw_version=11.1.1.7
+ptseelm-lx4362.ikeadt.com  domains=PTOWD0442,PTOWD0742  servers=soa_server2  fmw_version=11.1.1.7 
+
+[SOA-Dev-i1-4]
+ptseelm-lx4464.ikeadt.com  domains=PTOWD0772  servers=AdminServer,soa_server1  fmw_version=11.1.1.7
+
+[SOA-Dev-i1-5]
+ptseelm-lx4465.ikeadt.com  domains=PTOWD0782,PTOWD1162  servers=AdminServer,soa_server1  fmw_version=11.1.1.7
+
+[SOA-Dev-i1-6]
+ptseelm-lx4528.ikeadt.com  domains=PTOWD1082,PTOWD1092  servers=AdminServer,soa_server1  fmw_version=11.1.1.7
+
+[SOA-Dev-i1-7]
+ptseelm-lx4528.ikeadt.com  domains=PTOWD1082,PTOWD1092  servers=AdminServer,soa_server1  fmw_version=11.1.1.7
+
+[SOA-Dev-i1-8]
+ptseelm-lx4465.ikeadt.com  domains=PTOWD0782,PTOWD1162  servers=AdminServer,soa_server1  fmw_version=11.1.1.7
+
+[SOA-Dev-i1-9]
+ptseelm-lx4999.ikeadt.com  domains=PTOWD2862  servers=AdminServer,soa_server1  fmw_version=11.1.1.7
+ptseelm-lx41000.ikeadt.com  domains=PTOWD2862  servers=soa_server2  fmw_version=11.1.1.7
+
+[GINT-Weblogic-DEV-V2-ODI:children]
+ODI-Dev-i1-2
+ODI-Dev-i1-4
+
+[GINT-Weblogic-DEV-V2-ODI:vars]
+stack=odi
+
+[GINT-Weblogic-DEV-V2-OSB:children]
+OSB-Dev-i1-1
+OSB-Dev-i1-2
+OSB-Dev-i1-3
+OSB-Dev-i1-4
+
+[GINT-Weblogic-DEV-V2-OSB:vars]
+stack=osbgtw
+
+[GINT-Weblogic-DEV-V2-SOA:children]
+SOA-Dev-i1-2
+SOA-Dev-i1-3
+SOA-Dev-i1-4
+SOA-Dev-i1-5
+SOA-Dev-i1-6
+SOA-Dev-i1-7
+SOA-Dev-i1-8
+SOA-Dev-i1-9
+DELIS-SOA-PTE-DEV
+
+[GINT-Weblogic-DEV-V2-SOA:vars]
+stack=soa
+
+[GINT-Weblogic-DEV-V2:children]
+GINT-Weblogic-DEV-V2-ODI
+GINT-Weblogic-DEV-V2-OSB
+GINT-Weblogic-DEV-V2-SOA
+########################################################################################
+#######################################V2 inventory end#################################
+########################################################################################
+###----------------------------------------------------------------------------------###
+########################################################################################
+#####################################V3 inventory start#################################
+########################################################################################
+[GTW-DEV-i1-1]
+ptseelm-lx41022.ikeadt.com  domains=PTOWD3002  servers=AdminServer,gtw_server1
+ptseelm-lx41023.ikeadt.com  domains=PTOWD3002  servers=gtw_server2
+
+[GTW-DEV-i1-2]
+ptseelm-lx41024.ikeadt.com  domains=PTOWD3012  servers=AdminServer,gtw_server1
+ptseelm-lx41025.ikeadt.com  domains=PTOWD3012  servers=gtw_server2
+
+[GTW-DEV-i2-1]
+ptseelm-lx41026.ikeadt.com  domains=PTOWD3022  servers=AdminServer,gtw_server1
+ptseelm-lx41027.ikeadt.com  domains=PTOWD3022  servers=gtw_server2
+
+[ODI-DEV-i1-3]
+ptseelm-lx41055.ikeadt.com  domains=PTOWD3132,PTOWD3682  servers=AdminServer,ODI_server1
+ptseelm-lx41056.ikeadt.com  domains=PTOWD3132,PTOWD3682  servers=ODI_server2
+
+[ODI-DEV-i1-5]
+ptseelm-lx41057.ikeadt.com  domains=PTOWD3142,PTOWD3642  servers=AdminServer,ODI_server1
+ptseelm-lx41058.ikeadt.com  domains=PTOWD3142,PTOWD3642  servers=ODI_server2
+
+[ODI-DEV-i1-6]
+ptseelm-lx41059.ikeadt.com  domains=PTOWD3152  servers=AdminServer,ODI_server1
+ptseelm-lx41060.ikeadt.com  domains=PTOWD3152  servers=ODI_server2
+
+[ODI-DEV-i1-7]
+ptseelm-lx41459.ikeadt.com  domains=PTOWD5015  servers=AdminServer,ODI_server1
+ptseelm-lx41460.ikeadt.com  domains=PTOWD5015  servers=ODI_server2
+
+#[BAM-PTE-DEV]
+#ptseelm-lx4720.ikeadt.com  domains=PTOWD1512  servers=AdminServer,bam_server1
+#ptseelm-lx4721.ikeadt.com  domains=PTOWD1512  servers=bam_server2
+
+[OSB-DEV-i1-5]
+ptseelm-lx41062.ikeadt.com  domains=PTOWD3162  servers=AdminServer,osb_server1
+ptseelm-lx41063.ikeadt.com  domains=PTOWD3162  servers=osb_server2
+
+[OSB-DEV-i1-6]
+ptseelm-lx41064.ikeadt.com  domains=PTOWD3172  servers=AdminServer,osb_server1
+ptseelm-lx41065.ikeadt.com  domains=PTOWD3172  servers=osb_server2
+
+[OSB-DEV-i1-7]
+ptseelm-lx41457.ikeadt.com  domains=PTOWD5014  servers=AdminServer,osb_server1
+ptseelm-lx41458.ikeadt.com  domains=PTOWD5014  servers=osb_server2
+
+[OSB-DEV-i2-1]
+ptseelm-lx41066.ikeadt.com  domains=PTOWD3182  servers=AdminServer,osb_server1
+ptseelm-lx41067.ikeadt.com  domains=PTOWD3182  servers=osb_server2
+
+[SOA-DEV-i1-10]
+ptseelm-lx41016.ikeadt.com  domains=PTOWD2972  servers=AdminServer,soa_server1
+ptseelm-lx41017.ikeadt.com  domains=PTOWD2972  servers=soa_server2
+
+[SOA-DEV-i1-11]
+ptseelm-lx41018.ikeadt.com  domains=PTOWD2982  servers=AdminServer,soa_server1
+ptseelm-lx41019.ikeadt.com  domains=PTOWD2982  servers=soa_server2
+
+[SOA-DEV-i2-12]
+ptseelm-lx41020.ikeadt.com  domains=PTOWD2992  servers=AdminServer,soa_server1
+ptseelm-lx41021.ikeadt.com  domains=PTOWD2992  servers=soa_server2
+
+[SOA-DEV-i1-13]
+ptseelm-lx41429.ikeadt.com  domains=PTOWD5008  servers=AdminServer,soa_server1
+ptseelm-lx41430.ikeadt.com  domains=PTOWD5008  servers=soa_server2
+
+[SOA-DEV-i1-14]
+ptseelm-lx41453.ikeadt.com  domains=PTOWD5012  servers=AdminServer,soa_server1
+ptseelm-lx41454.ikeadt.com  domains=PTOWD5012  servers=soa_server2
+
+[SOA-DEV-i1-15]
+ptseelm-lx41455.ikeadt.com  domains=PTOWD5013  servers=AdminServer,soa_server1
+ptseelm-lx41456.ikeadt.com  domains=PTOWD5013  servers=soa_server2
+
+[GINT-Weblogic-DEV-V3-GTW:children]
+GTW-DEV-i2-1
+GTW-DEV-i1-1
+GTW-DEV-i1-2
+
+[GINT-Weblogic-DEV-V3-GTW:vars]
+stack=osbgtw
+fmw_version=12.2
+
+[GINT-Weblogic-DEV-V3-OSB:children]
+OSB-DEV-i2-1
+OSB-DEV-i1-5
+OSB-DEV-i1-6
+OSB-DEV-i1-7
+
+[GINT-Weblogic-DEV-V3-OSB:vars]
+stack=osbgtw
+fmw_version=12.2
+
+[GINT-Weblogic-DEV-V3-SOA:children]
+SOA-DEV-i1-10
+SOA-DEV-i1-11
+SOA-DEV-i2-12
+SOA-DEV-i1-13
+SOA-DEV-i1-14
+SOA-DEV-i1-15
+
+[GINT-Weblogic-DEV-V3-SOA:vars]
+stack=soa
+fmw_version=12.2
+
+[GINT-Weblogic-DEV-V3-ODI:children]
+ODI-DEV-i1-3
+ODI-DEV-i1-5
+ODI-DEV-i1-6
+ODI-DEV-i1-7
+
+[GINT-Weblogic-DEV-V3-ODI:vars]
+stack=odi
+fmw_version=12.2
+
+[GINT-Weblogic-DEV-V3-BAM:children]
+#BAM-PTE-DEV
+
+[GINT-Weblogic-DEV-V3-BAM:vars]
+stack=odi
+fmw_version=12.2
+
+[GINT-Weblogic-DEV-V3:children]
+GINT-Weblogic-DEV-V3-GTW
+GINT-Weblogic-DEV-V3-OSB
+GINT-Weblogic-DEV-V3-SOA
+GINT-Weblogic-DEV-V3-ODI
+GINT-Weblogic-DEV-V3-BAM
+########################################################################################
+#####################################V3 inventory end###################################
+########################################################################################
+

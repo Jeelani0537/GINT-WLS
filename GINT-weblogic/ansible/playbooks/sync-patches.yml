@@ -1,0 +1,54 @@
+- hosts: all
+  gather_facts: no
+  tasks:
+  - name: Create patch directories at /tmp
+    file: 
+      path: "/opt/oracle/patches"
+      state: "{{ item }}"
+      mode: 0777
+      recurse: yes
+    with_items:
+    - "absent"
+    - "directory"
+
+  - name: List 11G binaries
+    shell: "ls /opt/repo/patches/"
+    register: files
+    delegate_to: ptseelm-lx4253.ikeadt.com
+
+  - name: Ensure /opt/oracle/patches exists and clean
+    file:
+      path: /opt/oracle/patches
+
+
+  #- name: Copy patches
+  #  synchronize: 
+  #    src: "rsync://{{ inventory_hostname | regex_replace('ikeadta','ikeadt') }}:/opt/oracle/11G/{{ item }}"
+  #    dest: /tmp/patches/
+  #    mode: pull
+  #  with_items:
+  #  - "{{ files11.stdout_lines }}"
+  #  delegate_to: ppseelm-lx41027.ikeadta.com
+  #- name: Copy patches
+  #  shell: "scp ptseelm-lx4253.ikeadt.com:/opt/oracle/11G/{{ item }} /tmp/patches/"
+  #  with_items:
+  #  - "{{ files11.stdout_lines }}"
+  - name: Fetch patches to local server
+    fetch:
+      src: "/opt/repo/patches/{{ item }}"
+      dest: /tmp/
+      flat: yes
+    with_items:
+    - "{{ files.stdout_lines }}"
+    delegate_to: ptseelm-lx4253.ikeadt.com  
+    run_once: true
+
+  - name: Copy patches to remote server
+    copy:
+      src: "/tmp/{{ item }}"
+      dest: "/opt/oracle/patches/"
+    with_items:
+    - "{{ files.stdout_lines }}"
+
+  - name: Current files in patches directory"
+    shell: "ls -lrt /opt/oracle/patches"

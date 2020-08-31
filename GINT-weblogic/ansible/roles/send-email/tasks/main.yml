@@ -1,0 +1,2 @@
+- include: email.yml
+  when: servers is search('Admin')

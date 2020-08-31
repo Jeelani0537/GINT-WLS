@@ -1,0 +1,12 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  become_user: oracle
+
+  vars_files:
+  - ../group_vars/global.yml
+
+  roles:
+  - role: ../roles/health-check
+    msg: "This is to validate weblogic login with new password after password reset"
+    when: servers is search('Admin')

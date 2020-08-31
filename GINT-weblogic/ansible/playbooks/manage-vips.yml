@@ -1,0 +1,7 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  become_user: oracle
+  roles:
+  - role: ../roles/vip
+    action: "{{ user_action }}"

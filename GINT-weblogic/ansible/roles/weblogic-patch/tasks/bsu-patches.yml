@@ -1,0 +1,55 @@
+- name: List current bsu patches
+  #shell: "cd /opt/oracle/FMW{{ fmw_version }}/utils/bsu && ./bsu.sh -prod_dir=/opt/oracle/FMW{{ fmw_version }}/wlserver_10.3 -status=applied -view | grep 'Patch ID' | awk '{print $3}' | sort | paste -s -d, -"
+  shell: "cd /opt/oracle/FMW{{ fmw_version }}/utils/bsu && ./bsu.sh -report | grep 'Patch ID' | grep -v PSU | awk '{print $3}' | sort | paste -s -d, -" 
+  register: currentpatches
+
+- name: Remove current patches
+  shell: "cd /opt/oracle/FMW{{ fmw_version }}/utils/bsu && ./bsu.sh -prod_dir=/opt/oracle/FMW{{ fmw_version }}/wlserver_10.3 -patchlist={{ patch_id }} -verbose -remove"
+  with_items:
+  - "{{ patch_vars['bsu_remove_ids'] }}"
+  when: patch_vars['bsu_remove_ids'] is defined and patch_vars['bsu_remove_ids'] != "" and patch_id in currentpatches.stdout
+  loop_control:
+    loop_var: patch_id
+  register: patch_remove_status
+  failed_when: '"selected patch cannot be removed" in patch_remove_status.stdout'
+
+#- name: Remove bsu patches
+##  shell: "cd /opt/oracle/FMW{{ fmw_version }}/utils/bsu && ./bsu.sh -prod_dir=/opt/oracle/FMW{{ fmw_version }}/wlserver_10.3 -patchlist={{ patch_id }} -verbose -remove"
+##  with_items:
+##  - "{{ bsu_remove_patches.split(',') }}"
+##  when: bsu_remove_patches is defined and bsu_remove_patches != ""
+##  loop_control:
+##    loop_var: patch_id
+#
+##- name: Apply bsu patches
+##  shell: "cd /opt/oracle/FMW{{ fmw_version }}/utils/bsu &&  sed -i 's/Xms2g/Xms8g/g' bsu.sh && sed -i 's/Xmx2g/Xmx8g/g' bsu.sh && ./bsu.sh -install -patch_download_dir=/opt/oracle/FMW{{ fmw_version }}/utils/bsu/cache_dir -patchlist={{ patch_id }} -prod_dir=/opt/oracle/FMW{{ fmw_version }}/wlserver_10.3"
+##  with_items:
+##  - "{{ bsu_apply_patches.split(',') }}"
+##  when: bsu_apply_patches is defined and bsu_apply_patches != ""
+##  loop_control:
+##    loop_var: patch_id
+
+- include: run-bsu-patches.yml patch_id="{{ item }}"
+  with_items:
+  - "{{ patch_vars['bsu_ids'] }}"
+  when: patch_vars['bsu_ids'] is defined and patch_vars['bsu_ids'] != ""
+
+- include: run-bsu-patches.yml patch_id="{{ item }}"
+  with_items:
+  - "{{ patch_vars['bsu_soa_ids'] }}"
+  when: (patch_vars['bsu_soa_ids'] is defined) and (patch_vars['bsu_soa_ids'] != "") and (stack == "soa")
+
+- include: run-bsu-patches.yml patch_id="{{ item }}"
+  with_items:
+  - "{{ patch_vars['bsu_osbgtw_ids'] }}"
+  when: (patch_vars['bsu_osbgtw_ids'] is defined) and (patch_vars['bsu_osbgtw_ids'] != "") and (stack == "osbgtw")
+
+- include: run-bsu-patches.yml patch_id="{{ item }}"
+  with_items:
+  - "{{ patch_vars['bsu_odi_ids'] }}"
+  when: (patch_vars['bsu_odi_ids'] is defined) and (patch_vars['bsu_odi_ids'] != "") and (stack == "odi")
+
+- name: List down current bsu patches after patching
+  #shell: "cd /opt/oracle/FMW{{ fmw_version }}/utils/bsu && ./bsu.sh -prod_dir=/opt/oracle/FMW{{ fmw_version }}/wlserver_10.3 -status=applied -view | grep 'Patch ID' | awk '{print $3}' | sort | paste -s -d, -"
+  shell: "cd /opt/oracle/FMW{{ fmw_version }}/utils/bsu && ./bsu.sh -report | grep 'Patch ID' | grep -v PSU | awk '{print $3}' | sort | paste -s -d, -"
+

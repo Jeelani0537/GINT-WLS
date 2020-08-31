@@ -1,0 +1,7 @@
+- hosts: all
+  gather_facts: no
+  become: true
+  become_user: oracle
+  roles:
+  - role: house-keeping
+
