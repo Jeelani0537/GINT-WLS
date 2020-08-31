@@ -1,3 +1,0 @@
-[odi]
-kaitsu2 ansible_connection=docker ansible_user=oracle
-

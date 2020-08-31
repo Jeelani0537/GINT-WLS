@@ -1,7 +1,0 @@
----
-- hosts: all
-  gather_facts: False
-  become: yes
-  become_user: oracle
-  roles:
-  - sync_cds_itm_delta

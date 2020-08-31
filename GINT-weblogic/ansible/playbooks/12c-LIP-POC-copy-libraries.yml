@@ -1,9 +1,0 @@
-- name: Copy libraries/frameworks from multiple repos
-  hosts: all
-  gather_facts: no
-  tasks:
-  - block:
-    - name: Copy 12c libs/frameworks from multiple repos
-      copy:
-        src: "{{ source }}"
-        dest: "{{ dest }}"

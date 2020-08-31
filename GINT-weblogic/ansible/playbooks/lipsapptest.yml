@@ -1,7 +1,0 @@
-- hosts: all
-  become: yes
-  become_user: oracle
-  gather_facts: no
-  tasks:
-  - name: Print user
-    shell: "whoami && hostname"

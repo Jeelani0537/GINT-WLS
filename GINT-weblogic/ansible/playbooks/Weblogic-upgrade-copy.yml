@@ -1,9 +1,0 @@
----
-- hosts: all
-  gather_facts: False
-  become: yes
-  become_user: oracle
-  vars:
-    - ORACLE_HOME: /opt/oracle/FMW12.2
-  roles: 
-  - weblogic-upgrade

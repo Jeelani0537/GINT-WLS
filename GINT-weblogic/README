@@ -1,8 +1,0 @@
-GINT-Weblogic commonly used scripts
-
-Branching strategy:
-Never push anything to master directly.
-Create your own branch and merge it with develop 
-Develop branch would be frequently reviewd and merged with master upon standard releases.
-
-Ansible Tower has been configured to clone develop branch. So direct commits to master will not be available in Ansible Automation Framework

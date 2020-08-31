@@ -1,9 +1,0 @@
-- include: pre-user-activity.yml
-
-- include: oracle-activity.yml
-  become: yes
-  become_user: oracle
-  ignore_errors: true
-  
-- include: user-activity.yml
-  tags: dustats

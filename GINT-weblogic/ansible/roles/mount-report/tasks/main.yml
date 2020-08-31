@@ -1,5 +1,0 @@
-- include: oracle-activity.yml
-  become: yes
-  become_user: oracle
-
-- include: user-activity.yml

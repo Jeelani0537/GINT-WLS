@@ -1,2 +1,0 @@
-#This removes backedup tmp,cache and heapdump files
-- include: remove-backups.yml

@@ -1,4 +1,0 @@
-- name: List Content of Directory completedDeliveriesEU Region
-  shell:
-    cmd: /u01/scripts/store_procedure_script/SYNC_CDS_ITM_FULL.sh
-    chdir: /u01/scripts/store_procedure_script/

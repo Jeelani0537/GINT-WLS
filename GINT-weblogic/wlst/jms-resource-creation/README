@@ -1,6 +1,0 @@
-This can be used to create uniform distributed queues and/or uniform distributed topics.
-Prepare properties.csv file in same format.
-Ensure there are no malformed columns or rows.
-Copy both the files to the server where AdminServer is running.(This is not mandatory but recommended)
-Run script like below
-<wlst.sh with full path> createJMSQueues.py <resources properties file with full path> <console-username> <console-password> <admin-host> <admin-port> 

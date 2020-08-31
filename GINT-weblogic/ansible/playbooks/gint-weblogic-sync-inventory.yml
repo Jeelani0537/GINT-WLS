@@ -1,7 +1,0 @@
-- hosts: all
-  gather_facts: no
-  tasks:
-  - shell: "pwd && awx-manage help inventory_import"
-    delegate_to: localhost
-    run_once: true
-  

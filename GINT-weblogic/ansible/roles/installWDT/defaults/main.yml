@@ -1,3 +1,0 @@
----
-# defaults file for installWDT
-WDT_HOME: "/opt/oracle/weblogic-deploy"

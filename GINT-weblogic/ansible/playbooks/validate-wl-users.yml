@@ -1,8 +1,0 @@
-- hosts: all
-  gather_facts: no
-
-  vars_files:
-  - ../group_vars/global.yml
-
-  roles:
-  - role: ../roles/validate-wl-users

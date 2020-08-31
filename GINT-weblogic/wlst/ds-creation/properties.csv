@@ -1,2 +1,0 @@
-Type(XA/Non-XA);Name;jndiName;dsType(Generic/GridLink/Multi);connectionString;userName;password;targets
-XA;GEMINI_REG_EAST_IIP_DS;jdbc/GEMINI_REG_EAST_IIP_DS;Generic;jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(CONNECT_TIMEOUT=5)(TRANSPORT_CONNECT_TIMEOUT=3)(RETRY_COUNT=3)(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=gem1dc6db.ikea.com)(PORT=1521))(LOAD_BALANCE=yes))(CONNECT_DATA=(SERVICE_NAME=gem1dc6.ikea.com)));iip;<password>;soa_cluster1

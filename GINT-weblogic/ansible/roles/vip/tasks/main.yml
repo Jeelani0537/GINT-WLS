@@ -1,8 +1,0 @@
-- include: control-vip.yml key="{{ item.key }}" value="{{ item.value }}"
-  with_items:
-  - { key: 'PUBLIC|ADMIN', value: 'Admin' }
-  - { key: 'MS_1', value: 'server1'}
-  - { key: 'MS_2', value: 'server2'}
-  - { key: 'MS_3', value: 'server3'}
-  - { key: 'MS_4', value: 'server4'}
-  when: env in ['PPE','PROD']

@@ -1,8 +1,0 @@
-- name: Pick date
-  shell: "date +'%m%d%Y-%H%M%S'"
-  register: dt
-  
-- name: Send password over email
-  #shell: "echo '{{ group_names  }}-{{ inventory_hostname }}-new-password: {{ passwd.stdout }}. This password will be applicable after domain restart' | mail -s {{ env }}-{{ inventory_hostname }}-new-password-{{ dt_suffix.stdout }} -r {{ ansible_tower_mail_id }}@`hostname -d` kakum7@ikea.com"
-  shell: "printf 'Groups: {{ group_names  }}\nHost: {{ inventory_hostname }}\nNew password: {{ passwd.stdout }}\nThis password will be applicable after domain restart' | mail -s {{ env }}-{{ inventory_hostname }}-new-password-{{ dt_suffix.stdout }} -r {{ ansible_tower_mail_id }}@`hostname -d` {{ confidential_email_ids }}" 
-  when: servers is search('Admin')

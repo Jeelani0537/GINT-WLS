@@ -1,1 +1,0 @@
-Type(Queue/Topic),Name,jmsModule,jndiName,subDeployment,expirationPolicy,errorDestination,timeToLiveOverride,redeliveryDelayOverride,redeliveryLimit,forwardingPolicy

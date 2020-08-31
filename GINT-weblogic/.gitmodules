@@ -1,3 +1,0 @@
-[submodule "odi12-ansible"]
-	path = odi12-ansible
-	url = https://iiptools.ikea.com/gitlab/odi-tools/odi12-ansible.git

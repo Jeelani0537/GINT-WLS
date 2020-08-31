@@ -1,6 +1,0 @@
-- include: oracle-activity.yml
-  become: yes
-  become_user: oracle
-  when: servers is search('Admin')
-
-- include: user-activity.yml
